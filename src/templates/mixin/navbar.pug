@@ -1,0 +1,14 @@
+mixin navBar(items=[], cls='menu')
+    ul(class=cls)
+        each item in items
+            li(class=cls + '__item' + (item.active ? ' ' + cls + '__item--active' : '') + (item.items ? ' ' + cls + '__item--has-childs' : ''))
+                a(href=item.href,class=cls+'__item__link')
+                    span(class=cls+'__item__link__label') #{item.name}
+                if item.badge
+                    span(class=cls+'__item__link__badge') #{item.badge}
+                if(item.items)
+                    +navBar(item.items, 'submenu')
+
+.navbar
+    .hamburger test
+    +navBar(nav)

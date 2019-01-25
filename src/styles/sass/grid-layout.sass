@@ -1,0 +1,51 @@
+html, body
+    height: 100%
+    font-family: "Open Sans", sans-serif
+.layout
+    margin: 0 auto
+    max-width: $max-width
+    min-width: $sm
+    height: 100vh
+
+    display: grid
+    grid-template-columns: 200px auto auto
+    grid-template-rows: 50px auto 100px
+    grid-template-areas: "header header header" "sidebar main main" "footer footer footer"
+    grid-column-gap: 10px
+    grid-row-gap: 10px
+
+    +r($md)
+        grid-template-columns: auto auto
+        grid-template-areas: "header header" "main main" "sidebar footer"
+
+    &__header
+        padding-left: 10px
+        padding-right: 10px
+        grid-area: header
+        background-color: $light
+
+        display: flex
+        justify-content: space-between
+        align-items: center
+
+        &__logo
+            background-color: aqua
+            flex-grow: 1
+        &__nav
+            margin-left: 10px
+        &__cart
+            margin-left: 10px
+            background-color: aquamarine
+            &__icon
+                width: 32px
+                height: 32px
+
+    &__main
+        grid-area: main
+        background-color: $lighter
+    &__footer
+        grid-area: footer
+        background-color: $darker
+    &__sidebar
+        grid-area: sidebar
+        background-color: $dark

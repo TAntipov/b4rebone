@@ -1,0 +1,48 @@
+{
+  "name": "b4rebone",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "jquery": "^3.3.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-cli --mode development --display detailed",
+    "build": "webpack-cli --mode production"
+  },
+  "author": "Timofey Antipov",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^8.5.1",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-es2015": "^6.24.1",
+    "browser-sync": "^2.24.4",
+    "browser-sync-webpack-plugin": "^2.2.2",
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^0.28.11",
+    "eslint": "^5.5.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "exports-loader": "^0.7.0",
+    "expose-loader": "^0.7.5",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^1.1.11",
+    "html-loader": "^0.5.5",
+    "ignore-loader": "^0.1.2",
+    "imports-loader": "^0.8.0",
+    "node-sass": "^4.9.3",
+    "postcss-loader": "^2.1.5",
+    "pug-html-loader": "^1.1.5",
+    "pug-loader": "^2.4.0",
+    "sass-loader": "^7.0.1",
+    "script-loader": "^0.7.2",
+    "style-loader": "^0.21.0",
+    "svgo": "^1.0.5",
+    "svgo-loader": "^2.1.0",
+    "uglifyjs-webpack-plugin": "^1.2.5",
+    "webpack": "^4.9.1",
+    "webpack-cli": "^2.1.4",
+    "webpack-svg-icon-system": "^0.3.4"
+  }
+}

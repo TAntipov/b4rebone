@@ -1,0 +1,31 @@
+{
+  "id": 752,
+  "name": "ACL 4B8296H-STD Комплект шатунных вкладышей SUBARU EJ20/EJ22/EJ25 (incl. Turbo) c 98г.в. 52 mm",
+  "nameCatalog": "ACL Комплект шатунных вкладышей SUBARU EJ20/EJ22/EJ25 (incl. Turbo) c 98г.в. 52 mm",
+  "articul": "4B8296H-STD",
+  "url": "/part/752-4B8296H-STD/",
+  "priceValueWithDiscount": 3550,
+  "priceValue": 4080,
+  "priceCurrency": {
+    "ISOCode": "RUB",
+    "character": "р."
+  },
+  "hasDiscount": true,
+  "discount": 0.13,
+  "canShowAvailableStatus": true,
+  "availableStatusNick": "available",
+  "availableStatusName": "В наличии",
+  "canOrder": true,
+  "vendorName": "ACL Performance Engine Parts",
+  "categoryName": "Вкладыши ",
+  "vendorId": 13,
+  "categoryId": 150,
+  "hasDiscussionMessages": true,
+  "countDiscussionMessages": 30,
+  "image": {
+    "url": "/images/cache/250x0/752_g1Ks_114.jpg",
+    "urlFullsize": "/images/cache/fullsize/752_g1Ks_114.jpg",
+    "url720": "/images/cache/720x0/752_g1Ks_114.jpg"
+  },
+  "rating": 1
+}

@@ -1,0 +1,32 @@
+=grid-float-item($columns:1,$gutter:0)
+    width: if($gutter > 0, calc((100% - #{$gutter} * #{$columns - 1}) / #{$columns}), 100% / #{$columns})
+    &:nth-child(n)
+        float: left
+        margin-top: $gutter
+        margin-right: $gutter
+
+    &:nth-child(#{$columns+'n'})
+        margin-right: 0
+        float: right
+
+    &:nth-child(#{'-n+'+$columns})
+        margin-top: 0
+
+// Example of float grid snippet
+//.grid-float
+//    padding: 0
+//    +clr
+//    &__item
+//        +rmin($xl)
+//            +grid-float-item(5, 1.5em)
+//        +r($xl)
+//            +grid-float-item(4, 1em)
+//        +r($lg)
+//            +grid-float-item(3,1em)
+//        +r($md)
+//            +grid-float-item(2,0.5em)
+//        +r($sm)
+//            +grid-float-item()
+//    &:last-child
+//        +clr
+

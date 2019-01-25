@@ -1,0 +1,36 @@
+extends layout/common
+block header
+    include data/vars
+    include mixin/product-tile
+
+    .layout__header__logo
+        img(src="~img/logo.png")
+    nav.layout__header__nav
+        include mixin/navbar
+    .layout__header__cart
+        a(href='#')
+            svg.layout__header__cart__icon
+                use(xlink:href='~assets/svg/icons/cart.svg')
+
+block sidebar
+    |sidebar
+
+block main
+    h1 Product list
+
+    .grid-flex
+        - var n=0
+        while n < 7
+            - n++
+            .grid-flex__item
+                +productTile(product)
+
+    //svg.icon
+    //    use(xlink:href='~assets/svg/icons/cart.svg')
+    //svg.icon
+    //    use(xlink:href='~assets/svg/icons/delivery.svg')
+    //
+    //img(src="~assets/favicon/safari-pinned-tab.svg")
+
+block footer
+    |footer

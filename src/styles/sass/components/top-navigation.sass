@@ -1,0 +1,77 @@
+.navbar
+	display: flex
+	+r($sm)
+		display: none
+.menu
+	display: block
+	&__item
+		$__item: &
+		position: relative
+		display: inline-block
+		vertical-align: middle
+		background-color: aquamarine
+		margin-left: 25px
+		&:first-child
+			margin-left: 0
+
+		&__link
+			text-decoration: none
+			position: relative
+			&__label
+				text-transform: uppercase
+				&:after
+					content: ''
+					position: absolute
+					top: 100%
+					left: 50%
+					width: 0
+					height: 2px
+					transition: .3s all ease
+					background-color: blueviolet
+				&:hover
+					&:after
+						left: 0
+						width: 100%
+			&__badge
+				position: absolute
+				margin: -12px 0 0 -15px
+				text-transform: uppercase
+				padding: 2px 5px
+				font-size: 9px
+				background-color: coral
+				border-radius: 3px
+				white-space: nowrap
+
+		&--active
+			background: none
+			#{$__item}__link
+				color: red
+				&__label
+					&:after
+						left: 0
+						width: 100%
+						background-color: red
+		&--has-childs
+			background-color: chartreuse
+
+		//level 2
+		& .submenu
+			display: none
+			position: absolute
+			padding: 10px
+			top: 100%
+			left: 0
+			//right: 0
+			background-color: chartreuse
+
+			&__item
+				margin-left: 0
+				margin-top: 5px
+				background-color: coral
+
+				&__link
+					&__label
+						text-transform: capitalize
+
+		&:hover .submenu
+			display: block

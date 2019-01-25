@@ -1,0 +1,27 @@
+.product-tile
+    background-color: #fff
+    padding: 15px
+    &__image
+        display: block
+        margin: 0 auto
+        width: 100px
+        img
+            max-width: 100%
+            height: auto
+
+    &__price
+        &__value-old
+            text-decoration: line-through
+        &__currency
+            margin-left: 0.2em
+    &__discussion
+        &__count
+            margin-right: 0.2em
+            background-color: tomato
+
+    //modifier
+    &--active
+        box-shadow: 0 2px 4px -0.5px rgba(0,0,0,.13)
+        background-color: $dark
+
+

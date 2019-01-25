@@ -1,0 +1,29 @@
+=grid-flex-item($columns:1,$gutter:0)
+    width: if($gutter > 0, calc((100% - #{$gutter} * #{$columns - 1}) / #{$columns}), 100% / #{$columns})
+    &:nth-child(n)
+        margin-top: $gutter
+        margin-right: $gutter
+
+    &:nth-child(#{$columns+'n'})
+        margin-right: 0
+
+    &:nth-child(#{'-n+'+$columns})
+        margin-top: 0
+
+
+// Example of flex grid snippet 5 columns + responsive
+//.grid-flex
+//    background-color: tomato
+//    display: flex
+//    flex-flow: row wrap
+//    &__item
+//        +rmin($xl)
+//            +grid-flex-item(5, 1px)
+//        +r($xl)
+//            +grid-flex-item(4, 1em)
+//        +r($lg)
+//            +grid-flex-item(3,1em)
+//        +r($md)
+//            +grid-flex-item(2,0.5em)
+//        +r($sm)
+//            +grid-flex-item()
