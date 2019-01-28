@@ -36,6 +36,7 @@ module.exports = {
   entry: {
     index: Path.resolve(__dirname, DIR_SRC, 'js', 'index.js'),
     second: Path.resolve(__dirname, DIR_SRC, 'js', 'second.js'),
+    third: Path.resolve(__dirname, DIR_SRC, 'js', 'third.js'),
   },
   output: {
     filename: '[name].js',
