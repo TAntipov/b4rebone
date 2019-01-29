@@ -29,7 +29,7 @@ let ExtractPUG = new ExtractTextPlugin({
 
 let fileLoaderOptions = {
   outputPath: '../assets/',
-  publicPath: 'assets/',
+  publicPath: '/assets/',
   regExp: /src\/assets\/([\s\S]+)/,
   name: '[1]'
 }
@@ -57,8 +57,9 @@ module.exports = {
   resolve: {
     modules: ['./js', './js/modules', 'node_modules', './data'],
     alias: {
-      assets: Path.resolve(__dirname, DIR_SRC, 'assets'),
-      img: Path.resolve(__dirname, DIR_SRC, 'assets', 'img'),
+      assets: Path.resolve(__dirname, DIR_SRC, DIR_ASSETS),
+      img: Path.resolve(__dirname, DIR_SRC, DIR_ASSETS, 'img'),
+      fonts: Path.resolve(__dirname, DIR_SRC, DIR_ASSETS, 'fonts'),
       styles: Path.resolve(__dirname, DIR_SRC, 'styles'),
       templates: Path.resolve(__dirname, DIR_SRC, 'templates'),
     }
@@ -116,7 +117,7 @@ module.exports = {
 
       //Fonts
       {
-        test: /\.(woff|woff2|ttf|eot)([\?]?.*)$/,
+        test: /\.(woff(2)?|ttf|eot|svg)$/,
         use: [
           {
             loader: 'file-loader',
@@ -125,28 +126,11 @@ module.exports = {
         ]
       },
 
-      // //Fonts
-      // {
-      //   test: /\.(woff|woff2|ttf|eot)([\?]?.*)$/,
-      //   use: [
-      //     {
-      //       loader: 'file-loader',
-      //       options: {
-      //         publicPath: 'assets/fonts/',
-      //         regExp: /\/fonts\/(.*)/,
-      //         name: '../assets/fonts/[1]'
-      //       }
-      //     }
-      //   ]
-      // },
-
-      //{test: /\.(woff|svg|ttf|eot)([\?]?.*)$/, loader: 'file-loader?name=../assets/fonts/[1]&regExp=fonts/(.*)'},
-
       //SVG Icons to sprite
       {
         test: /\.svg$/,
         include: [
-          Path.resolve(__dirname, DIR_SRC, 'assets', 'svg', 'icons')
+          Path.resolve(__dirname, DIR_SRC, DIR_ASSETS, 'svg', 'icons')
         ],
         use: [
           {
@@ -178,7 +162,7 @@ module.exports = {
       {
         test: /\.svg$/,
         exclude: [
-          Path.resolve(__dirname, DIR_SRC, 'assets', 'svg', 'icons')
+          Path.resolve(__dirname, DIR_SRC, DIR_ASSETS, 'svg', 'icons')
           //Path.resolve(__dirname, DIR_SRC, 'img', 'sprite.svg')
         ],
         use: [
@@ -279,8 +263,8 @@ module.exports = {
 
     new CopyWebpackPlugin([
         {
-          from: Path.resolve(__dirname, DIR_SRC, 'site.webmanifest'),
-          to: Path.resolve(__dirname, DIR_BUILD, DIR_ASSETS),
+          from: Path.resolve(__dirname, DIR_SRC, DIR_ASSETS, 'favicon'),
+          to: Path.resolve(__dirname, DIR_BUILD, DIR_ASSETS, 'favicon'),
           toType: 'dir'
         }], {
         //'debug': true
