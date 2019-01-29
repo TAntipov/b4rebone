@@ -11,6 +11,8 @@ const SvgStore = require('webpack-svg-icon-system/lib/SvgStorePlugin');
 const DIR_SRC = 'src';
 const DIR_BUILD = 'build';
 const DIR_ASSETS = 'assets';
+const MODE_DEVELOPMENT = 'development';
+const MODE_PRODUCTION = 'production';
 
 module.exports = (env, argv) => {
 
@@ -205,8 +207,7 @@ module.exports = (env, argv) => {
                     title: 'b4rebone',
                     //products: require(Path.resolve(__dirname, DIR_SRC, 'data', 'products.json'))
                   },
-                  pretty: argv.mode === 'development' ? true : false
-
+                  pretty: argv.mode === MODE_DEVELOPMENT
                 }
               }
             ]
@@ -222,8 +223,8 @@ module.exports = (env, argv) => {
               {
                 loader: 'css-loader',
                 options: {
-                  sourceMap: argv.mode === 'development' ? true : false,
-                  minimize: argv.mode === 'development' ? false : true
+                  sourceMap: argv.mode === MODE_DEVELOPMENT,
+                  minimize: argv.mode === MODE_PRODUCTION
                 }
               },
               {
@@ -239,7 +240,7 @@ module.exports = (env, argv) => {
               {
                 loader: 'sass-loader',
                 options: {
-                  sourceMap: argv.mode === 'development' ? true : false
+                  sourceMap: argv.mode === MODE_DEVELOPMENT
                 }
               }]
           })
@@ -292,13 +293,13 @@ module.exports = (env, argv) => {
       })
 
     ],
-    watch: argv.mode === 'development' ? true : false,
+    watch: argv.mode === MODE_DEVELOPMENT,
     watchOptions: {aggregateTimeout: 100},
-    devtool: argv.mode === 'development' ? 'inline-source-map' : false
+    devtool: argv.mode === MODE_PRODUCTION ? false : 'inline-source-map'
   };
 
 
-  if (argv.mode !== 'development') {
+  if (argv.mode === MODE_PRODUCTION) {
     webpackConfig.optimization.minimizer = [
       new UglifyJsPlugin({
         cache: true,
@@ -313,11 +314,5 @@ module.exports = (env, argv) => {
     ]
   }
 
-
-  // warnings: false,
-  //   unsafe: true,
-  //   drop_console: true
-
   return webpackConfig;
-
 }
