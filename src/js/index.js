@@ -1,6 +1,6 @@
-import '../templates/index.pug';
 import './common';
 import binarySearch from './modules/binarySearch';
+import '../templates/index.pug';
 
 export default function Main() {
   const needle = 5;

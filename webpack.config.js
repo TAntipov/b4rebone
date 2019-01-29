@@ -1,6 +1,7 @@
 let Path = require('path');
 let Webpack = require('webpack');
 let CleanWebpackPlugin = require('clean-webpack-plugin');
+let CopyWebpackPlugin = require('copy-webpack-plugin');
 let BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 let ExtractTextPlugin = require('extract-text-webpack-plugin');
 let Autoprefixer = require('autoprefixer');
@@ -9,6 +10,7 @@ let SvgStore = require('webpack-svg-icon-system/lib/SvgStorePlugin');
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const DIR_SRC = 'src';
 const DIR_BUILD = 'build';
+const DIR_ASSETS = 'assets';
 
 let ExtractCSS = new ExtractTextPlugin({
   filename: '../css/styles.css',
@@ -274,6 +276,16 @@ module.exports = {
       dry: false,
       exclude: ['.gitkeep']
     }),
+
+    new CopyWebpackPlugin([
+        {
+          from: Path.resolve(__dirname, DIR_SRC, 'site.webmanifest'),
+          to: Path.resolve(__dirname, DIR_BUILD, DIR_ASSETS),
+          toType: 'dir'
+        }], {
+        //'debug': true
+      }
+    ),
 
     new Webpack.ProvidePlugin({
       $: 'jquery',
