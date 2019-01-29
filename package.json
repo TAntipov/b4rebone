@@ -7,8 +7,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-cli --mode development --display detailed",
-    "build": "webpack-cli --mode production"
+    "dev": "webpack-cli --mode=development --display detailed",
+    "build": "webpack-cli --mode=production"
   },
   "author": "Timofey Antipov",
   "license": "ISC",
