@@ -16,20 +16,16 @@ const MODE_PRODUCTION = 'production';
 
 module.exports = (env, argv) => {
 
-  let ExtractCSS = new ExtractTextPlugin({
+  const ExtractCSS = new ExtractTextPlugin({
     filename: '../css/styles.css',
     publicPath: '/css',
   });
 
-  let ExtractHTML = new ExtractTextPlugin({
-    filename: '../[name].html',
-  });
-
-  let ExtractPUG = new ExtractTextPlugin({
+  const ExtractPUG = new ExtractTextPlugin({
     filename: '../[name].html'
   });
 
-  let fileLoaderOptions = {
+  const fileLoaderOptions = {
     outputPath: '../assets/',
     publicPath: '/assets/',
     regExp: /src\/assets\/([\s\S]+)/,
@@ -42,6 +38,7 @@ module.exports = (env, argv) => {
       second: Path.resolve(__dirname, DIR_SRC, 'js', 'second.js'),
       third: Path.resolve(__dirname, DIR_SRC, 'js', 'third.js'),
     },
+
     output: {
       filename: '[name].js',
       path: Path.resolve(__dirname, DIR_BUILD, 'js'),
@@ -67,8 +64,8 @@ module.exports = (env, argv) => {
         templates: Path.resolve(__dirname, DIR_SRC, 'templates'),
       }
     },
-    devtool: 'source-map',
 
+    devtool: argv.mode === MODE_PRODUCTION ? false : 'source-map',
     optimization: {
       splitChunks: {
         cacheGroups: {
@@ -245,13 +242,6 @@ module.exports = (env, argv) => {
               }]
           })
         },
-        //HTML
-        {
-          test: /\.html$/,
-          use: ExtractHTML.extract({
-            use: [{loader: "html-loader"}]
-          })
-        },
       ]
     },
     plugins: [
@@ -284,7 +274,6 @@ module.exports = (env, argv) => {
 
       new SvgStore(),
       ExtractCSS,
-      ExtractHTML,
       ExtractPUG,
       new BrowserSyncPlugin({
         host: 'localhost',
@@ -293,6 +282,7 @@ module.exports = (env, argv) => {
       })
 
     ],
+
     watch: argv.mode === MODE_DEVELOPMENT,
     watchOptions: {aggregateTimeout: 100},
     devtool: argv.mode === MODE_PRODUCTION ? false : 'inline-source-map'
@@ -309,7 +299,7 @@ module.exports = (env, argv) => {
           ecma: 6,
           mangle: true
         },
-        sourceMap: true
+        sourceMap: false
       })
     ]
   }
