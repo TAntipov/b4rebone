@@ -100,7 +100,7 @@ module.exports = (env, argv) => {
             {
               loader: 'babel-loader',
               options: {
-                presets: ["es2015"]
+                presets: ["@babel/preset-env"]
               }
             }]
         },
