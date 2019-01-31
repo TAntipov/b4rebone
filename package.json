@@ -42,7 +42,7 @@
     "style-loader": "^0.23.1",
     "svgo": "^1.1.1",
     "svgo-loader": "^2.2.0",
-    "uglifyjs-webpack-plugin": "^1.2.5",
+    "uglifyjs-webpack-plugin": "^2.1.1",
     "webpack": "^4.9.1",
     "webpack-cli": "^2.1.4",
     "webpack-svg-icon-system": "^0.3.4"
