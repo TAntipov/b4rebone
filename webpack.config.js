@@ -225,19 +225,19 @@ module.exports = (env, argv) => {
               {
                 loader: 'css-loader',
                 options: {
-                  sourceMap: argv.mode===MODE_DEVELOPMENT,
+                  sourceMap: argv.mode === MODE_DEVELOPMENT,
                 }
               },
               {
                 loader: 'postcss-loader',
                 options: {
-                  sourceMap: argv.mode===MODE_DEVELOPMENT,
+                  sourceMap: argv.mode === MODE_DEVELOPMENT,
                   plugins: function (mode) {
                     let plugins = [
                       Autoprefixer('last 2 versions', 'ie 10'),
                     ]
-                    if(mode===MODE_PRODUCTION){
-                      plugins.push(CSSNano({safe:true}));
+                    if (mode === MODE_PRODUCTION) {
+                      plugins.push(CSSNano());
                     }
                     return plugins;
                   }(argv.mode)
