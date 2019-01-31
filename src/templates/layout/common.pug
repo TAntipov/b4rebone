@@ -4,6 +4,7 @@ html(lang='ru-RU')
     head
         // SEO
         title #{app.name}
+        meta(name='application-name', content=app.name)
         meta(name='description' content=app.name)
         meta(name='keywords' content='')
         meta(name='author' content=app.author)
@@ -46,23 +47,8 @@ html(lang='ru-RU')
         //Windows
         meta(http-equiv='X-UA-Compatible' content='IE=Edge')
         meta(http-equiv='msthemecompatible', content='no')
-        meta(name='application-name', content=app.name)
-        meta(name='msapplication-tooltip', content=app.description)
-        meta(name='msapplication-TileColor', content='#da532c')
-
-        //<meta name="msapplication-TileImage" content="/assets/favicon/ms-icon-70x70.png"/>
-        //<meta name="msapplication-square70x70logo" content="/assets/favicon/ms-icon-70.png"/>
-        //<meta name="msapplication-square150x150logo" content="/assets/favicon/ms-icon-150.png"/>
-        //<meta name="msapplication-square310x310logo" content="/assets/favicon/ms-icon-310.png"/>
-        //<meta name="msapplication-wide310x150logo" content="/assets/favicon/ms-icon-310x150.png"/>
-
-        //<meta name="msapplication-TileColor" content="#da532c">
-        //<meta name="msapplication-TileImage" content="/assets/favicon/mstile-310x150.png" />
-        //<meta name="msapplication-TileImage" content="/assets/favicon/mstile-310x310.png" />
-        //<meta name="msapplication-TileImage" content="/assets/favicon/mstile-150x150.png" />
-        //<meta name="msapplication-TileImage" content="/assets/favicon/mstile-144x144.png" />
-        //<meta name="msapplication-TileImage" content="/assets/favicon/mstile-70x70.png" />
-        //<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml" />
+        meta(name='msapplication-tooltip' content=app.name)
+        meta(name='msapplication-config', content='/assets/favicon/browserconfig.xml')
 
         //Favicon
         link(rel='manifest', href='/assets/favicon/manifest.json')
@@ -71,8 +57,7 @@ html(lang='ru-RU')
         link(rel='icon', type='image/png' href='/assets/favicon/favicon-16x16.png', sizes='16x16')
         link(rel='icon', type='image/png' href='/assets/favicon/favicon-32x32.png', sizes='32x32')
         link(rel='icon', type='image/png' href='/assets/favicon/favicon-96x96.png', sizes='96x96')
-
-        link(href='${`css/styles.css?v=1`}' rel='stylesheet')
+        link(href='/css/styles.css' rel='stylesheet')
 
     body
         <!--[if lte IE 9]>

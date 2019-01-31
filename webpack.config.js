@@ -65,6 +65,8 @@ module.exports = (env, argv) => {
       }
     },
 
+    watch: argv.mode === MODE_DEVELOPMENT,
+    watchOptions: {aggregateTimeout: 100},
     devtool: argv.mode === MODE_PRODUCTION ? false : 'source-map',
     optimization: {
       splitChunks: {
@@ -92,6 +94,7 @@ module.exports = (env, argv) => {
             options: '$'
           }]
         },
+
         //Babel
         {
           test: /\.js$/,
@@ -104,6 +107,7 @@ module.exports = (env, argv) => {
               }
             }]
         },
+
         //Images
         {
           test: /\.(png|gif|jpg|ico)([\?]?.*)$/,
@@ -254,16 +258,20 @@ module.exports = (env, argv) => {
         exclude: ['.gitkeep']
       }),
 
+      //Copy files
       new CopyWebpackPlugin([
           {
             from: Path.resolve(__dirname, DIR_SRC, DIR_ASSETS, 'favicon'),
             to: Path.resolve(__dirname, DIR_BUILD, DIR_ASSETS, 'favicon'),
-            toType: 'dir'
+          }, {
+            from: Path.resolve(__dirname, DIR_SRC, DIR_ASSETS, 'robots.txt'),
+            to: Path.resolve(__dirname, DIR_BUILD, 'robots.txt'),
           }], {
           //'debug': true
         }
       ),
 
+      //Provide jQuery
       new Webpack.ProvidePlugin({
         $: 'jquery',
         jquery: 'jquery',
@@ -282,10 +290,6 @@ module.exports = (env, argv) => {
       })
 
     ],
-
-    watch: argv.mode === MODE_DEVELOPMENT,
-    watchOptions: {aggregateTimeout: 100},
-    devtool: argv.mode === MODE_PRODUCTION ? false : 'inline-source-map'
   };
 
 
