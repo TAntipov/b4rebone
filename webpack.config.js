@@ -6,6 +6,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const Autoprefixer = require('autoprefixer');
+const CSSNano = require('cssnano');
 const SvgStore = require('webpack-svg-icon-system/lib/SvgStorePlugin');
 
 const DIR_SRC = 'src';
@@ -224,18 +225,22 @@ module.exports = (env, argv) => {
               {
                 loader: 'css-loader',
                 options: {
-                  sourceMap: argv.mode === MODE_DEVELOPMENT,
-                  minimize: argv.mode === MODE_PRODUCTION
+                  sourceMap: argv.mode===MODE_DEVELOPMENT,
                 }
               },
               {
                 loader: 'postcss-loader',
                 options: {
-                  plugins: function () {
-                    return [
-                      Autoprefixer('last 2 versions', 'ie 10')
+                  sourceMap: argv.mode===MODE_DEVELOPMENT,
+                  plugins: function (mode) {
+                    let plugins = [
+                      Autoprefixer('last 2 versions', 'ie 10'),
                     ]
-                  }
+                    if(mode===MODE_PRODUCTION){
+                      plugins.push(CSSNano({safe:true}));
+                    }
+                    return plugins;
+                  }(argv.mode)
                 }
               },
               {
