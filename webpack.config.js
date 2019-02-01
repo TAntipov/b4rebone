@@ -275,7 +275,6 @@ module.exports = (env, argv) => {
           //'debug': true
         }
       ),
-
       //Provide jQuery
       new Webpack.ProvidePlugin({
         $: 'jquery',
@@ -284,7 +283,6 @@ module.exports = (env, argv) => {
         'window.jquery': 'jquery',
         'window.jQuery': 'jquery'
       }),
-
       new SvgStore(),
       ExtractCSS,
       ExtractPUG,
