@@ -3,3 +3,5 @@
 node_modules
 build/*
 !build/.gitkeep
+cache/*
+!cache/.gitkeep
