@@ -6,7 +6,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const Autoprefixer = require('autoprefixer');
-const CSSNano = require('cssnano');
 const SvgStore = require('webpack-svg-icon-system/lib/SvgStorePlugin');
 
 const DIR_SRC = 'src';
@@ -253,7 +252,7 @@ module.exports = (env, argv) => {
           ExtractCSS.extract({
           fallback: 'style-loader',
           use: [
-            getCacheLoader('css'),
+            //getCacheLoader('css'),
             {
               loader: 'css-loader',
               options: {
@@ -267,9 +266,10 @@ module.exports = (env, argv) => {
                 plugins: function (mode) {
                   let plugins = [
                     Autoprefixer(),
+                    require('css-mqpacker')
                   ]
                   if (mode === MODE_PRODUCTION) {
-                    plugins.push(CSSNano());
+                    plugins.push(require('cssnano'));
                   }
                   return plugins;
                 }(argv.mode)
