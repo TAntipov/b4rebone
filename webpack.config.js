@@ -26,6 +26,14 @@ const getThreadLoader = name => ({
   }
 })
 
+const getCacheLoader = path => ({
+    loader: 'cache-loader',
+    options: {
+      cacheDirectory: Path.resolve(__dirname, DIR_CACHE, path)
+    }
+})
+
+
 module.exports = (env, argv) => {
 
   const ExtractCSS = new ExtractTextPlugin({
@@ -112,25 +120,17 @@ module.exports = (env, argv) => {
           test: /\.js$/,
           exclude: [/node_modules/],
           use: [
-            {
-              loader: 'cache-loader',
-              options: {
-                cacheDirectory: Path.resolve(__dirname, DIR_CACHE, 'js')
-              }
-            },
+            //getCacheLoader(Path.resolve(__dirname, DIR_CACHE, 'js'))
             getThreadLoader('js'),
             {
               loader: 'babel-loader',
               options: {
                 presets: [['@babel/preset-env', {
-                  modules: false, //disable babel bundling
+                  modules: false, //disable babel bundling for speedup
                   loose: true,
                   useBuiltIns: 'usage',
                   debug: true,
-                  targets: {
-                    browsers: ['last 2 versions']
-                    //browsers: ['> 0.0001%']
-                  },
+                  //target in .browserslistrc
                 }]]
               }
             }]
@@ -220,12 +220,7 @@ module.exports = (env, argv) => {
           test: /\.pug$/,
           use: ExtractPUG.extract({
             use: [
-              {
-                loader: 'cache-loader',
-                options: {
-                  cacheDirectory: Path.resolve(__dirname, DIR_CACHE, 'html')
-                }
-              },
+              getCacheLoader('html'),
               getThreadLoader('html'),
               {
                 loader: 'html-loader',
@@ -258,12 +253,7 @@ module.exports = (env, argv) => {
           ExtractCSS.extract({
           fallback: 'style-loader',
           use: [
-            {
-              loader: 'cache-loader',
-              options: {
-                cacheDirectory: Path.resolve(__dirname, DIR_CACHE, 'css')
-              }
-            },
+            getCacheLoader('css'),
             {
               loader: 'css-loader',
               options: {
@@ -276,7 +266,7 @@ module.exports = (env, argv) => {
                 sourceMap: argv.mode === MODE_DEVELOPMENT,
                 plugins: function (mode) {
                   let plugins = [
-                    Autoprefixer('last 2 versions', 'ie 10'),
+                    Autoprefixer(),
                   ]
                   if (mode === MODE_PRODUCTION) {
                     plugins.push(CSSNano());
@@ -285,6 +275,7 @@ module.exports = (env, argv) => {
                 }(argv.mode)
               }
             },
+            getThreadLoader('sass'),
             {
               loader: 'sass-loader',
               options: {
@@ -344,17 +335,17 @@ module.exports = (env, argv) => {
         sourceMap: false
       })
     ]
-
-    webpackConfig.plugins.push(
-      //Clean build dir
-      new CleanWebpackPlugin([DIR_BUILD], {
-        root: Path.resolve(__dirname),
-        verbose: true,
-        dry: false,
-        exclude: ['.gitkeep']
-      })
-    )
   }
+
+  webpackConfig.plugins.push(
+    //Clean build dir
+    new CleanWebpackPlugin([DIR_BUILD], {
+      root: Path.resolve(__dirname),
+      verbose: true,
+      dry: false,
+      exclude: ['.gitkeep']
+    })
+  )
 
   return webpackConfig;
 }
