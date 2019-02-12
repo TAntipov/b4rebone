@@ -120,7 +120,7 @@ module.exports = (env, argv) => {
           test: /\.js$/,
           exclude: [/node_modules/],
           use: [
-            //getCacheLoader(Path.resolve(__dirname, DIR_CACHE, 'js'))
+            getCacheLoader('js'),
             getThreadLoader('js'),
             {
               loader: 'babel-loader',

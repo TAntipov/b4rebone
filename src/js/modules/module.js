@@ -1,3 +1,3 @@
 (function Module() {
-  console.log('module1111');
+  console.log('module1');
 })();
