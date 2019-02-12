@@ -12,8 +12,19 @@ const SvgStore = require('webpack-svg-icon-system/lib/SvgStorePlugin');
 const DIR_SRC = 'src';
 const DIR_BUILD = 'build';
 const DIR_ASSETS = 'assets';
+const DIR_CACHE = 'cache';
 const MODE_DEVELOPMENT = 'development';
 const MODE_PRODUCTION = 'production';
+
+
+const getThreadLoader = name => ({
+  loader: 'thread-loader',
+  options: {
+    workerParallelJobs: 50,
+    poolRespawn: false,
+    name
+  }
+})
 
 module.exports = (env, argv) => {
 
@@ -65,7 +76,7 @@ module.exports = (env, argv) => {
         templates: Path.resolve(__dirname, DIR_SRC, 'templates'),
       }
     },
-
+    mode: argv.mode,
     watch: argv.mode === MODE_DEVELOPMENT,
     watchOptions: {aggregateTimeout: 100},
     devtool: argv.mode === MODE_PRODUCTION ? false : 'source-map',
@@ -102,9 +113,25 @@ module.exports = (env, argv) => {
           exclude: [/node_modules/],
           use: [
             {
+              loader: 'cache-loader',
+              options: {
+                cacheDirectory: Path.resolve(__dirname, DIR_CACHE, 'js')
+              }
+            },
+            getThreadLoader('js'),
+            {
               loader: 'babel-loader',
               options: {
-                presets: ["@babel/preset-env"]
+                presets: [['@babel/preset-env', {
+                  modules: false, //disable babel bundling
+                  loose: true,
+                  useBuiltIns: 'usage',
+                  debug: true,
+                  targets: {
+                    browsers: ['last 2 versions']
+                    //browsers: ['> 0.0001%']
+                  },
+                }]]
               }
             }]
         },
@@ -194,10 +221,18 @@ module.exports = (env, argv) => {
           use: ExtractPUG.extract({
             use: [
               {
+                loader: 'cache-loader',
+                options: {
+                  cacheDirectory: Path.resolve(__dirname, DIR_CACHE, 'html')
+                }
+              },
+              getThreadLoader('html'),
+              {
                 loader: 'html-loader',
                 options: {
+                  //url: false,
                   interpolate: true,
-                  ignoreCustomFragments: [/\{\{.*?}}/],
+                  ignoreCustomFragments: [/\{\{.*?}}/], //Deprecated!!!
                   attrs: ['link:href', 'img:src', 'use:xlink:href', 'source:srcset']
                 }
 
@@ -219,81 +254,81 @@ module.exports = (env, argv) => {
         // SASS
         {
           test: /\.(sass|scss|css)$/,
-          use: ExtractCSS.extract({
-            fallback: 'style-loader',
-            use: [
-              {
-                loader: 'css-loader',
-                options: {
-                  sourceMap: argv.mode === MODE_DEVELOPMENT,
-                }
-              },
-              {
-                loader: 'postcss-loader',
-                options: {
-                  sourceMap: argv.mode === MODE_DEVELOPMENT,
-                  plugins: function (mode) {
-                    let plugins = [
-                      Autoprefixer('last 2 versions', 'ie 10'),
-                    ]
-                    if (mode === MODE_PRODUCTION) {
-                      plugins.push(CSSNano());
-                    }
-                    return plugins;
-                  }(argv.mode)
-                }
-              },
-              {
-                loader: 'sass-loader',
-                options: {
-                  sourceMap: argv.mode === MODE_DEVELOPMENT
-                }
-              }]
-          })
-        },
-      ]
+          use:
+          ExtractCSS.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'cache-loader',
+              options: {
+                cacheDirectory: Path.resolve(__dirname, DIR_CACHE, 'css')
+              }
+            },
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: argv.mode === MODE_DEVELOPMENT,
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                sourceMap: argv.mode === MODE_DEVELOPMENT,
+                plugins: function (mode) {
+                  let plugins = [
+                    Autoprefixer('last 2 versions', 'ie 10'),
+                  ]
+                  if (mode === MODE_PRODUCTION) {
+                    plugins.push(CSSNano());
+                  }
+                  return plugins;
+                }(argv.mode)
+              }
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: argv.mode === MODE_DEVELOPMENT
+              }
+            }]
+        })
     },
-    plugins: [
+  ]
+},
+  plugins: [
 
-      //Clean build dir
-      new CleanWebpackPlugin([DIR_BUILD], {
-        root: Path.resolve(__dirname),
-        verbose: true,
-        dry: false,
-        exclude: ['.gitkeep']
-      }),
+    //Copy files
+    new CopyWebpackPlugin([
+        {
+          from: Path.resolve(__dirname, DIR_SRC, DIR_ASSETS, 'favicon'),
+          to: Path.resolve(__dirname, DIR_BUILD, DIR_ASSETS, 'favicon'),
+        }, {
+          from: Path.resolve(__dirname, DIR_SRC, DIR_ASSETS, 'robots.txt'),
+          to: Path.resolve(__dirname, DIR_BUILD, 'robots.txt'),
+        }], {
+        //'debug': true
+      }
+    ),
+    //Provide jQuery
+    new Webpack.ProvidePlugin({
+      $: 'jquery',
+      jquery: 'jquery',
+      jQuery: 'jquery',
+      'window.jquery': 'jquery',
+      'window.jQuery': 'jquery'
+    }),
+    new SvgStore(),
+    ExtractCSS,
+    ExtractPUG,
+    new BrowserSyncPlugin({
+      host: 'localhost',
+      port: 8888, // remove port option to avoid socket.io.js 404 (Not Found)
+      server: {baseDir: Path.resolve(DIR_BUILD)}
+    })
 
-      //Copy files
-      new CopyWebpackPlugin([
-          {
-            from: Path.resolve(__dirname, DIR_SRC, DIR_ASSETS, 'favicon'),
-            to: Path.resolve(__dirname, DIR_BUILD, DIR_ASSETS, 'favicon'),
-          }, {
-            from: Path.resolve(__dirname, DIR_SRC, DIR_ASSETS, 'robots.txt'),
-            to: Path.resolve(__dirname, DIR_BUILD, 'robots.txt'),
-          }], {
-          //'debug': true
-        }
-      ),
-      //Provide jQuery
-      new Webpack.ProvidePlugin({
-        $: 'jquery',
-        jquery: 'jquery',
-        jQuery: 'jquery',
-        'window.jquery': 'jquery',
-        'window.jQuery': 'jquery'
-      }),
-      new SvgStore(),
-      ExtractCSS,
-      ExtractPUG,
-      new BrowserSyncPlugin({
-        host: 'localhost',
-        port: 8888, // remove port option to avoid socket.io.js 404 (Not Found)
-        server: {baseDir: Path.resolve(DIR_BUILD)}
-      })
-
-    ],
-  };
+  ],
+}
+  ;
 
 
   if (argv.mode === MODE_PRODUCTION) {
@@ -309,6 +344,16 @@ module.exports = (env, argv) => {
         sourceMap: false
       })
     ]
+
+    webpackConfig.plugins.push(
+      //Clean build dir
+      new CleanWebpackPlugin([DIR_BUILD], {
+        root: Path.resolve(__dirname),
+        verbose: true,
+        dry: false,
+        exclude: ['.gitkeep']
+      })
+    )
   }
 
   return webpackConfig;
