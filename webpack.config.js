@@ -32,6 +32,8 @@ const getCacheLoader = path => ({
 })
 
 
+
+
 module.exports = (env, argv) => {
 
   const ExtractCSS = new ExtractTextPlugin({
@@ -45,12 +47,12 @@ module.exports = (env, argv) => {
 
   const fileLoaderOptions = {
     outputPath: '../assets/',
-    publicPath: '/assets/',
-    regExp: /src\/assets\/([\s\S]+)/,
+    publicPath: 'assets/',
+    regExp: /assets\/([\s\S]+)/,
     name: '[1]'
   }
 
-  let webpackConfig = {
+  const webpackConfig = {
     entry: {
       index: Path.resolve(__dirname, DIR_SRC, 'js', 'index.js'),
       second: Path.resolve(__dirname, DIR_SRC, 'js', 'second.js'),
@@ -77,6 +79,7 @@ module.exports = (env, argv) => {
       alias: {
         assets: Path.resolve(__dirname, DIR_SRC, DIR_ASSETS),
         img: Path.resolve(__dirname, DIR_SRC, DIR_ASSETS, 'img'),
+        svg: Path.resolve(__dirname, DIR_SRC, DIR_ASSETS, 'svg'),
         fonts: Path.resolve(__dirname, DIR_SRC, DIR_ASSETS, 'fonts'),
         styles: Path.resolve(__dirname, DIR_SRC, 'styles'),
         templates: Path.resolve(__dirname, DIR_SRC, 'templates'),
@@ -223,10 +226,8 @@ module.exports = (env, argv) => {
               {
                 loader: 'html-loader',
                 options: {
-                  //url: false,
                   interpolate: true,
-                  ignoreCustomFragments: [/\{\{.*?}}/], //Deprecated!!!
-                  attrs: ['link:href', 'img:src', 'use:xlink:href', 'source:srcset']
+                  attrs: ['img:src', 'use:xlink:href', 'source:srcset']
                 }
 
               },
@@ -261,6 +262,7 @@ module.exports = (env, argv) => {
             {
               loader: 'postcss-loader',
               options: {
+                ident: 'postcss',
                 sourceMap: argv.mode === MODE_DEVELOPMENT,
                 plugins: function (mode) {
                   let plugins = [

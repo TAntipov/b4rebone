@@ -10,7 +10,7 @@ block header
     .layout__header__cart
         a(href='#')
             svg.layout__header__cart__icon
-                use(xlink:href='~assets/svg/icons/cart.svg')
+                use(xlink:href='~svg/icons/cart.svg')
 
 block sidebar
     |sidebar
@@ -25,16 +25,10 @@ block main
             .grid-flex__item
                 +productTile(product)
 
-    //svg.icon
-    //    use(xlink:href='~assets/svg/icons/cart.svg')
-    //svg.icon
-    //    use(xlink:href='~assets/svg/icons/delivery.svg')
-    //
-    //img(src="~assets/favicon/safari-pinned-tab.svg")
+    img(src='~img/subfolder/main.jpg')
 
 block footer
     |footer
-
 
 block bottom_js
     script(src='js/index.js')
