@@ -47,7 +47,7 @@ module.exports = (env, argv) => {
 
   const fileLoaderOptions = {
     outputPath: '../assets/',
-    publicPath: 'assets/',
+    publicPath: '/assets/',
     regExp: /assets\/([\s\S]+)/,
     name: '[1]'
   }
