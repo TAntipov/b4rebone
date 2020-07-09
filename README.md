@@ -1,5 +1,10 @@
 Run
 ===============================
+NodeJS 14.05
+NPM 6.14.5
+Webpack 4.43.0
+Webpack-cli 3.3.12
+
 ```npm i``` instal dependencies  
 
 ```npm run dev``` runs browsersync static server
