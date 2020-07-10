@@ -1,11 +1,11 @@
-const Path = require('path');
 const Webpack = require('webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const Path = require('path');
+const TerserPlugin = require('terser-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const SvgStore = require('webpack-svg-icon-system/lib/SvgStorePlugin');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 // PostCSS plugins
 const Autoprefixer = require('autoprefixer');
@@ -135,6 +135,7 @@ module.exports = (env, argv) => {
                   loose: true,
                   useBuiltIns: 'usage',
                   debug: true,
+                  target: 'es2015',
                   // target in .browserslistrc
                 }]],
               },
@@ -349,12 +350,10 @@ module.exports = (env, argv) => {
 
   if (argv.mode === MODE_PRODUCTION) {
     webpackConfig.optimization.minimizer = [
-      new UglifyJsPlugin({
-        cache: true,
-        parallel: true,
-        uglifyOptions: {
-          compress: true,
-          ecma: 6,
+      new TerserPlugin({
+        terserOptions: {
+          cache: true,
+          parallel: true,
           mangle: true,
         },
         sourceMap: false,

@@ -1,11 +1,8 @@
-import './common'
+import './common';
 import '../templates/third.pug';
 
-export default function Main(){
+export default function Main() {
   console.log('third');
 }
 
 Main();
-
-
-

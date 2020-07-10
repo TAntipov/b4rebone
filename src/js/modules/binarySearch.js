@@ -2,7 +2,7 @@
  Binary search function simple example
  */
 
-export default function (array, needle) {
+export default function(array, needle) {
   let low = 0;
   let high = array.length - 1;
   let mid;

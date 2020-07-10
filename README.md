@@ -5,11 +5,15 @@ NPM 6.14.5
 Webpack 4.43.0
 Webpack-cli 3.3.12
 
-```npm i``` instal dependencies  
+```npm i``` install dependencies  
 
 ```npm run dev``` runs browsersync static server
 
 ```npm run build``` puts optimized bunle into ```build``` dir
+
+JS Coding style 
+-------------------------------
+AirBnb https://github.com/airbnb/javascript
 
 Add font face 
 -------------------------------
