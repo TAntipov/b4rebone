@@ -1,0 +1,24 @@
+ul
+    each t in types
+        li
+            h2 #{t.label} #[span от #{t.minPrice} р.]
+            form(id='f_' + t.name)
+                each f in t.fields
+                    .field
+                        label(for='l_' + t.name + '_' + f.name)=f.label
+                        case f.inputType
+                            when "select"
+                                select(
+                                    name=f.name,
+                                    id='l_' + t.name + '_' + f.name
+                                )
+                                    each o,index in f.options
+                                        option(value=index)=o.label
+                            when "checkbox"
+                                input(
+                                    type='checkbox',
+                                    name=f.name,
+                                    id='l_' + t.name + '_' + f.name
+                                )
+
+

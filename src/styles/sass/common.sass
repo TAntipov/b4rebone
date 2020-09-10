@@ -1,49 +1,12 @@
-@import "reset"
+//@import "reset"
 @import "helpers"
 @import "mixins"
 @import "typography"
 @import "vars"
+@import "../../js/modules/calc/styles"
 
-@import "grid-layout"
-@import "snippets/grid-float"
-@import "snippets/grid-flex"
-@import "components/product-tile"
-@import "components/top-navigation"
+html, body
+  background-color: #fff
+  height: 100%
+  font-family: "Roboto-Regular"
 
-body
-    background-color: #fff
-
-// Example of float grid snippet
-.grid-float
-    padding: 0
-    +clr
-    &__item
-        +rmin($xl)
-            +grid-float-item(5, 1.5em)
-        +r($xl)
-            +grid-float-item(4, 1em)
-        +r($lg)
-            +grid-float-item(3,1em)
-        +r($md)
-            +grid-float-item(2,0.5em)
-        +r($sm)
-            +grid-float-item()
-    &:last-child
-        +clr
-
-// Example of flex grid snippet
-.grid-flex
-    background-color: tomato
-    display: flex
-    flex-flow: row wrap
-    &__item
-        +rmin($xl)
-            +grid-flex-item(5, 1px)
-        +r($xl)
-            +grid-flex-item(4, 1em)
-        +r($lg)
-            +grid-flex-item(3,1em)
-        +r($md)
-            +grid-flex-item(2,0.5em)
-        +r($sm)
-            +grid-flex-item()
