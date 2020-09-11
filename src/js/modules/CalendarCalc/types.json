@@ -147,7 +147,7 @@
   },
   {
     "label": "Домики перекидные",
-    "name": "flipHomes",
+    "name": "flipHomeCalendar",
     "picture": "3.svg",
     "minPrice": 40,
     "fields": [
@@ -188,6 +188,155 @@
         "options": [
           {"label": "7 листов", "payload":{"add": 0}},
           {"label": "13 листов", "payload":{"add": 0}}
+        ]
+      },
+      {
+        "label": "Тираж",
+        "name": "printRun",
+        "inputType": "select",
+        "options": [
+          {"label": "30", "payload":{"multiply": 80, "sizeMiniPrice": 105,"sizeMidiPrice": 105, "customMini": 1.3, "customMidi": 1.3}},
+          {"label": "50", "payload":{"multiply": 65, "sizeMiniPrice": 85,"sizeMidiPrice": 85, "customMini": 1.2, "customMidi": 1.2}},
+          {"label": "100", "payload":{"multiply": 55,"sizeMiniPrice": 70,"sizeMidiPrice": 70, "customMini": 1.1, "customMidi": 1.1}},
+          {"label": "150", "payload":{"multiply": 50,"sizeMiniPrice": 65,"sizeMidiPrice": 65, "customMini": 1, "customMidi": 1}},
+          {"label": "200", "payload":{"multiply": 45,"sizeMiniPrice": 60,"sizeMidiPrice": 60, "customMini": 1, "customMidi": 1}},
+          {"label": "250", "payload":{"multiply": 45,"sizeMiniPrice": 60,"sizeMidiPrice": 60, "customMini": 1, "customMidi": 1}},
+          {"label": "300", "payload":{"multiply": 40,"sizeMiniPrice": 55,"sizeMidiPrice": 55, "customMini": 1, "customMidi": 1}},
+          {"label": "400", "payload":{"multiply": 40,"sizeMiniPrice": 55,"sizeMidiPrice": 55, "customMini": 1, "customMidi": 1}},
+          {"label": "500", "payload":{"multiply": 40,"sizeMiniPrice": 55,"sizeMidiPrice": 55, "customMini": 1, "customMidi": 1}}
+        ]
+      },
+      {
+        "label": "Индивидуальный дизайн",
+        "name": "custom",
+        "inputType": "checkbox"
+      }
+    ]
+  },
+  {
+    "label": "Домики самосборные",
+    "name": "selfMadeHomeCalendar",
+    "picture": "4.svg",
+    "minPrice": 20,
+    "fields": [
+      {
+        "label": "Размер",
+        "name": "size",
+        "inputType": "select",
+        "options": [
+          {"label": "1/3 А4", "payload":{"price": 0}},
+          {"label": "вертикальный 120х170 мм", "payload":{"price": 0}},
+          {"label": "размер на заказ", "payload":{"price": 0}}
+
+        ]
+      },
+      {
+        "label": "Ламинация",
+        "name": "lamination",
+        "inputType": "select",
+        "options": [
+          {"label": "Без ламинации", "payload":{"add": 0}},
+          {"label": "Глянцевая 1+0", "payload":{"add": 10}},
+          {"label": "Матовая 1+0", "payload":{"add": 10}}
+        ]
+      },
+      {
+        "label": "Тираж",
+        "name": "printRun",
+        "inputType": "select",
+        "options": [
+          {"label": "30", "payload":{"multiply": 80, "sizeMiniPrice": 40,"sizeMidiPrice": 40, "customMini": 1.3, "customMidi": 1.3}},
+          {"label": "50", "payload":{"multiply": 65, "sizeMiniPrice": 35,"sizeMidiPrice": 35, "customMini": 1.2, "customMidi": 1.2}},
+          {"label": "100", "payload":{"multiply": 55,"sizeMiniPrice": 30,"sizeMidiPrice": 30, "customMini": 1.1, "customMidi": 1.1}},
+          {"label": "150", "payload":{"multiply": 50,"sizeMiniPrice": 25,"sizeMidiPrice": 25, "customMini": 1, "customMidi": 1}},
+          {"label": "200", "payload":{"multiply": 45,"sizeMiniPrice": 24,"sizeMidiPrice": 24, "customMini": 1, "customMidi": 1}},
+          {"label": "250", "payload":{"multiply": 45,"sizeMiniPrice": 23,"sizeMidiPrice": 23, "customMini": 1, "customMidi": 1}},
+          {"label": "300", "payload":{"multiply": 40,"sizeMiniPrice": 22,"sizeMidiPrice": 22, "customMini": 1, "customMidi": 1}},
+          {"label": "400", "payload":{"multiply": 40,"sizeMiniPrice": 21,"sizeMidiPrice": 21, "customMini": 1, "customMidi": 1}},
+          {"label": "500", "payload":{"multiply": 40,"sizeMiniPrice": 20,"sizeMidiPrice": 20, "customMini": 1, "customMidi": 1}}
+        ]
+      },
+      {
+        "label": "Индивидуальный дизайн",
+        "name": "custom",
+        "inputType": "checkbox"
+      }
+    ]
+  },
+  {
+    "label": "Карманные",
+    "name": "pocketCalendar",
+    "picture": "4.svg",
+    "minPrice": 8,
+    "fields": [
+      {
+        "label": "Размер",
+        "name": "size",
+        "inputType": "select",
+        "options": [
+          {"label": "70х100 мм", "payload":{"price": 0}},
+          {"label": "размер на заказ", "payload":{"price": 0}}
+
+        ]
+      },
+      {
+        "label": "Тираж",
+        "name": "printRun",
+        "inputType": "select",
+        "options": [
+          {"label": "30", "payload":{"multiply": 80, "sizeMiniPrice": 40,"sizeMidiPrice": 40, "customMini": 1.3, "customMidi": 1.3}},
+          {"label": "50", "payload":{"multiply": 65, "sizeMiniPrice": 35,"sizeMidiPrice": 35, "customMini": 1.2, "customMidi": 1.2}},
+          {"label": "100", "payload":{"multiply": 55,"sizeMiniPrice": 30,"sizeMidiPrice": 30, "customMini": 1.1, "customMidi": 1.1}},
+          {"label": "150", "payload":{"multiply": 50,"sizeMiniPrice": 25,"sizeMidiPrice": 25, "customMini": 1, "customMidi": 1}},
+          {"label": "200", "payload":{"multiply": 45,"sizeMiniPrice": 24,"sizeMidiPrice": 24, "customMini": 1, "customMidi": 1}},
+          {"label": "250", "payload":{"multiply": 45,"sizeMiniPrice": 23,"sizeMidiPrice": 23, "customMini": 1, "customMidi": 1}},
+          {"label": "300", "payload":{"multiply": 40,"sizeMiniPrice": 22,"sizeMidiPrice": 22, "customMini": 1, "customMidi": 1}},
+          {"label": "400", "payload":{"multiply": 40,"sizeMiniPrice": 21,"sizeMidiPrice": 21, "customMini": 1, "customMidi": 1}},
+          {"label": "500", "payload":{"multiply": 40,"sizeMiniPrice": 20,"sizeMidiPrice": 20, "customMini": 1, "customMidi": 1}}
+        ]
+      },
+      {
+        "label": "Индивидуальный дизайн",
+        "name": "custom",
+        "inputType": "checkbox"
+      }
+    ]
+  },
+  {
+    "label": "Перекидные",
+    "name": "flipCalendar",
+    "picture": "3.svg",
+    "minPrice": 95,
+    "fields": [
+      {
+        "label": "Размер",
+        "name": "size",
+        "inputType": "select",
+        "options": [
+          {"label": "А4 (210х297 мм)", "payload":{"price": 200, "lamination": 7}},
+          {"label": "A3 (420х297 мм)", "payload":{"price": 350, "lamination": 13 }},
+          {"label": "A2 (594х420 мм)", "payload":{"price": 500, "lamination": 16}},
+          {"label": "A1 (840x594 мм)", "payload":{"price": 500, "lamination": 16}},
+          {"label": "индивидуальный размер", "payload":{"price": ""}}
+        ]
+      },
+      {
+        "label": "Ламинация",
+        "name": "lamination",
+        "inputType": "select",
+        "options": [
+          {"label": "Без ламинации", "payload":{"add": 0}},
+          {"label": "Глянцевая 1+1 (25 мкр)", "payload":{"add": 8}},
+          {"label": "Матовая 1+1 (25 мкр)", "payload":{"add": 8}}
+        ]
+      },
+      {
+        "label": "Дизайн календарного блока",
+        "name": "design",
+        "inputType": "select",
+        "options": [
+          {"label": "7 листов 4+4", "payload":{"add": 0}},
+          {"label": "12 листов 4+0", "payload":{"add": 0}}
         ]
       },
       {

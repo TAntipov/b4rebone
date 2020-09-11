@@ -359,7 +359,7 @@ module.exports = (env, argv) => {
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: [
         Path.resolve(__dirname, DIR_BUILD, '*'),
-        '!' + Path.resolve(__dirname, DIR_BUILD, '.gitkeep'), // keep file
+        `!${Path.resolve(__dirname, DIR_BUILD, '.gitkeep')}`, // keep file
       ],
       verbose: true,
       dry: false,

@@ -1,11 +1,9 @@
 import BaseComponent from '../BaseComponent';
 
 export default class CalcForm extends BaseComponent {
-  constructor(el, options = []) {
+  constructor(el) {
     super(el);
-    // eslint-disable-next-line import/no-unresolved,global-require,import/no-webpack-loader-syntax
     this.template = require('!!pug-loader!./index.pug');
-    // eslint-disable-next-line global-require
     this.types = require('./types.json');
     this.forms = [];
   }
@@ -14,12 +12,11 @@ export default class CalcForm extends BaseComponent {
     this.forms.forEach((item, index) => {
       item.addEventListener('change', (e) => {
         e.stopPropagation();
-        // eslint-disable-next-line no-undef
         const formData = new FormData(e.target.closest('form'));
         const payload = [];
         let i = 0;
-        formData.forEach(((value, key) => {
-          const field = this.types[index].fields[i++];
+        formData.forEach(((value) => {
+          const field = this.types[index].fields[i];
           switch (field.inputType) {
             case 'select':
               payload.push(field.options[value]);
@@ -28,6 +25,7 @@ export default class CalcForm extends BaseComponent {
               payload.push(field);
               break;
           }
+          i += 1;
         }));
         this.trigger('change', payload);
       });

@@ -1,3 +1,11 @@
 {
-  "extends": "airbnb-base"
+  "extends": "airbnb-base",
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "import/no-webpack-loader-syntax": "off",
+    "import/no-unresolved": "off",
+    "global-require": "off"
+  }
 }

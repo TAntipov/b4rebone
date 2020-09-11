@@ -1,5 +1,5 @@
 import './common';
-import CalcForm from './modules/calendarCalc/CalcForm';
+import CalcForm from './modules/CalendarCalc/CalcForm';
 import '../templates/index.pug';
 
 export default function Main() {
