@@ -14,9 +14,22 @@ export default class CalcForm extends BaseComponent {
     this.forms.forEach((item, index) => {
       item.addEventListener('change', (e) => {
         e.stopPropagation();
-        console.log(index);
         // eslint-disable-next-line no-undef
-        this.trigger('change', new FormData(e.target.closest('form')));
+        const formData = new FormData(e.target.closest('form'));
+        const payload = [];
+        let i = 0;
+        formData.forEach(((value, key) => {
+          const field = this.types[index].fields[i++];
+          switch (field.inputType) {
+            case 'select':
+              payload.push(field.options[value]);
+              break;
+            default:
+              payload.push(field);
+              break;
+          }
+        }));
+        this.trigger('change', payload);
       });
     });
   }

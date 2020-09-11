@@ -1,7 +1,8 @@
 ul
     each t in types
         li
-            h2 #{t.label} #[span от #{t.minPrice} р.]
+            h2 #{t.label}
+                div от #{t.minPrice} р
             form(id='f_' + t.name)
                 each f in t.fields
                     .field
