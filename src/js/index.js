@@ -1,13 +1,10 @@
-import './common';
-import CalcForm from './modules/CalendarCalc/CalcForm';
 import '../templates/index.pug';
+import './common';
+import CalendarCalc from './modules/CalendarCalc/CalendarCalc';
 
 export default function Main() {
-  const calcForm = new CalcForm('.calc');
-  calcForm.render();
-  calcForm.on('change', (e) => {
-    console.log(e.detail);
-  });
+  const Calc = new CalendarCalc('.calc-container');
+  Calc.render();
 }
 
 Main();

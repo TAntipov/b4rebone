@@ -3,7 +3,6 @@ import BaseComponent from '../BaseComponent';
 export default class CalcForm extends BaseComponent {
   constructor(el) {
     super(el);
-    this.template = require('!!pug-loader!./index.pug');
     this.types = require('./types.json');
     this.forms = [];
   }
@@ -33,11 +32,14 @@ export default class CalcForm extends BaseComponent {
   }
 
   render() {
+    this.template = require('!!pug-loader!./CalcForm.pug');
     this.el.innerHTML = this.template({
       types: this.types,
     });
 
     this.forms = this.el.querySelectorAll('form');
     this.bindEvents();
+
+    super.render();
   }
 }
