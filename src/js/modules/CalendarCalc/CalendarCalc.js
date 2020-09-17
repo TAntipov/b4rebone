@@ -4,27 +4,33 @@ import CalcForm from './CalcForm';
 export default class CalendarCalc extends BaseComponent {
   constructor(el) {
     super(el);
-    // this.types = require('./types.json');
-    this.formsContainer = '.calc';
+    this.types = require('./types.json');
     this.forms = [];
+    this.formsContainer = '.calc';
   }
 
   bindEvents() {
-    this.calcForm.on('change', (e) => {
-      console.log(e.detail);
+    this.forms.forEach((form) => {
+      form.on('change', (e) => {
+        console.log(form.name, e.detail);
+      });
     });
   }
 
   mountForms() {
-    this.calcForm = new CalcForm(this.formsContainer);
-    this.calcForm.render();
+    this.el.querySelectorAll('li').forEach((element, index) => {
+      const form = new CalcForm(element, this.types[index]);
+      form.render();
+      this.forms.push(form);
+    });
   }
 
   render() {
-    this.template = require('!!pug-loader!./index.pug');
-    this.el.innerHTML = this.template();
+    this.template = require('!!pug-loader!./CalendarCalc.pug');
+    this.el.innerHTML = this.template({
+      types: this.types,
+    });
     super.render();
-
     this.mountForms();
     this.bindEvents();
   }

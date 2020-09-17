@@ -1,45 +1,39 @@
 import BaseComponent from '../BaseComponent';
 
 export default class CalcForm extends BaseComponent {
-  constructor(el) {
+  constructor(el, options = {}) {
     super(el);
-    this.types = require('./types.json');
-    this.forms = [];
+    Object.assign(this, options);
   }
 
   bindEvents() {
-    this.forms.forEach((item, index) => {
-      item.addEventListener('change', (e) => {
-        e.stopPropagation();
-        const formData = new FormData(e.target.closest('form'));
-        const payload = [];
-        let i = 0;
-        formData.forEach(((value) => {
-          const field = this.types[index].fields[i];
-          switch (field.inputType) {
-            case 'select':
-              payload.push(field.options[value]);
-              break;
-            default:
-              payload.push(field);
-              break;
-          }
-          i += 1;
-        }));
-        this.trigger('change', payload);
-      });
+    this.on('change', (e) => {
+      e.stopPropagation();
+      const formData = new FormData(this.el.querySelector('form'));
+      const payload = [];
+      let i = 0;
+      formData.forEach(((value) => {
+        const field = this.fields[i];
+        switch (field.inputType) {
+          case 'select':
+            payload.push(field.options[value]);
+            break;
+          default:
+            payload.push(field);
+            break;
+        }
+        i += 1;
+      }));
+      e.detail = payload;
     });
   }
 
   render() {
     this.template = require('!!pug-loader!./CalcForm.pug');
     this.el.innerHTML = this.template({
-      types: this.types,
+      form: this,
     });
-
-    this.forms = this.el.querySelectorAll('form');
     this.bindEvents();
-
     super.render();
   }
 }
