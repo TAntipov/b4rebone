@@ -2,7 +2,7 @@
   {
     "label": "Календарь 3 пружины",
     "name": "threeSpringsCalendar",
-    "picture": "1.svg",
+    "picture": "threeSpringsCalendar.svg",
     "minPrice": 100,
     "fields": [
       {
@@ -77,7 +77,7 @@
   {
     "label": "Квартальный на 1 пружине",
     "name": "oneSpringsCalendar",
-    "picture": "2.svg",
+    "picture": "oneSpringsCalendar.svg",
     "minPrice": 60,
     "fields": [
       {
@@ -148,7 +148,7 @@
   {
     "label": "Домики перекидные",
     "name": "flipHomeCalendar",
-    "picture": "3.svg",
+    "picture": "flipHomeCalendar.svg",
     "minPrice": 40,
     "fields": [
       {
@@ -216,7 +216,7 @@
   {
     "label": "Домики самосборные",
     "name": "selfMadeHomeCalendar",
-    "picture": "4.svg",
+    "picture": "selfMadeHomeCalendar.svg",
     "minPrice": 20,
     "fields": [
       {
@@ -266,7 +266,7 @@
   {
     "label": "Карманные",
     "name": "pocketCalendar",
-    "picture": "4.svg",
+    "picture": "pocketCalendar.svg",
     "minPrice": 8,
     "fields": [
       {
@@ -305,7 +305,7 @@
   {
     "label": "Перекидные",
     "name": "flipCalendar",
-    "picture": "3.svg",
+    "picture": "flipCalendar.svg",
     "minPrice": 95,
     "fields": [
       {

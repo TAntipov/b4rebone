@@ -1,4 +1,14 @@
 .calc
-    ul.calc__forms
-        each t in types
-            li
+  ul.calc__tabs
+    each t in types
+      li.calc__tabs__tab
+        a.calc__tabs__tab__link.js-tab-link(href="#")
+          img(src='~assets/svg/'+t.picture)
+          | #{t.label}
+
+  .calc__forms.js-forms
+  .calc__result
+    | result1
+
+
+

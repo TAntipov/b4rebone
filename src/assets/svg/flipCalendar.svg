@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 13.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 14948)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="89px" height="104px" viewBox="0 0 89 104" enable-background="new 0 0 89 104" xml:space="preserve">
+<g>
+	<g>
+		<polygon fill="#EAEAEE" points="86,6 86,103 0,103 0,104 89,104 89,6 		"/>
+	</g>
+	<polygon fill="#EAEAEE" stroke="#15242A" stroke-width="2" points="41,7 1,7 1,102 85,102 85,7 45,7 45,9 41,9 	"/>
+	<g>
+		<polygon fill="#FFFFFF" points="84.5,89.5 1.5,89.5 1.5,62.499 84.5,62.499 84.5,89.5 		"/>
+		<path fill="#15242A" d="M85,62v28H1V62H85 M84,63H2v26h82V63L84,63z"/>
+	</g>
+	<g>
+		<polygon fill="#FFFFFF" points="84.5,59.501 1.5,59.501 1.5,16.5 84.5,16.5 84.5,59.501 		"/>
+		<path fill="#15242A" d="M85,16v44H1V16H85 M84,17H2v42h82V17L84,17z"/>
+	</g>
+	<rect x="17" y="2" fill="#15242A" width="2" height="8"/>
+	<path fill="#15242A" d="M19,68v1h10v-1H19z M7,84h22v-1H7V84z M7,79h22v-1H7V79z M19,74h10v-1H19V74z"/>
+	<rect x="17" y="11" fill="#15242A" width="2" height="2"/>
+	<rect x="7" y="2" fill="#15242A" width="2" height="8"/>
+	<rect x="7" y="11" fill="#15242A" width="2" height="2"/>
+	<rect x="27" y="2" fill="#15242A" width="2" height="8"/>
+	<rect x="27" y="11" fill="#15242A" width="2" height="2"/>
+	<rect x="37" y="2" fill="#15242A" width="2" height="8"/>
+	<rect x="37" y="11" fill="#15242A" width="2" height="2"/>
+	<rect x="47" y="2" fill="#15242A" width="2" height="8"/>
+	<rect x="47" y="11" fill="#15242A" width="2" height="2"/>
+	<rect x="57" y="2" fill="#15242A" width="2" height="8"/>
+	<rect x="57" y="11" fill="#15242A" width="2" height="2"/>
+	<rect x="67" y="2" fill="#15242A" width="2" height="8"/>
+	<rect x="67" y="11" fill="#15242A" width="2" height="2"/>
+	<rect x="77" y="2" fill="#15242A" width="2" height="8"/>
+	<rect x="77" y="11" fill="#15242A" width="2" height="2"/>
+	<rect x="7.5" y="68.5" fill="none" stroke="#15242A" width="5" height="5"/>
+	<polyline fill="none" stroke="#15242A" stroke-width="2" points="0,4 41,4 41,1 45,1 45,4 86,4 	"/>
+	<path fill="#15242A" d="M57,69h10v-1H57V69z M69,68v1h10v-1H69z M69,84h10v-1H69V84z M57,84h10v-1H57V84z M57,79h10v-1H57V79z
+		 M69,74h10v-1H69V74z M57,74h10v-1H57V74z M69,79h10v-1H69V79z"/>
+	<path fill="#15242A" d="M32,69h10v-1H32V69z M44,68v1h10v-1H44z M44,84h10v-1H44V84z M32,84h10v-1H32V84z M32,79h10v-1H32V79z
+		 M44,74h10v-1H44V74z M32,74h10v-1H32V74z M44,79h10v-1H44V79z"/>
+</g>
+</svg>
