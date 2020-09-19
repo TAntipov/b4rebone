@@ -25,7 +25,7 @@ export default class CalendarCalc extends BaseComponent {
           });
           if (src.length) {
             const img = form.el.querySelector('.js-form-image');
-            img.src = `/assets/svg/${form.name}/${src.join('_')}.svg`;
+            img.src = `assets/svg/${form.name}/${src.join('_')}.svg`;
           }
         }
       });

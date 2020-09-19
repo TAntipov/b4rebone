@@ -8,8 +8,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-cli --mode=development --display detailed",
-    "build": "webpack-cli --mode=production",
-    "serve": "webpack-dev-server --config webpack.static-server.config.js"
+    "build": "webpack-cli --mode=production"
   },
   "author": "Timofey Antipov",
   "license": "ISC",
@@ -46,8 +45,8 @@
     "style-loader": "^1.2.1",
     "svgo": "^1.3.2",
     "svgo-loader": "^2.2.1",
+    "terser-webpack-plugin": "^3.0.6",
     "thread-loader": "^2.1.3",
-    "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12",
     "webpack-svg-icon-system": "^0.3.4"
