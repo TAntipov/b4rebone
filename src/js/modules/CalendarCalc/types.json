@@ -2,7 +2,8 @@
   {
     "label": "Календарь 3 пружины",
     "name": "threeSpringsCalendar",
-    "picture": "threeSpringsCalendar.svg",
+    "icon": "icon.svg",
+    "defaultImage": "mini.svg",
     "minPrice": 100,
     "fields": [
       {
@@ -10,10 +11,10 @@
         "name": "size",
         "inputType": "select",
         "options": [
-          {"label": "Мини (297х210 мм)", "payload":{"price": 200, "lamination": 7}},
-          {"label": "Миди (335х250 мм)", "payload":{"price": 350, "lamination": 13 }},
-          {"label": "Макси (370х290 мм)", "payload":{"price": 500, "lamination": 16}},
-          {"label": "индивидуальный размер", "payload":{"price": ""}}
+          {"label": "Мини (297х210 мм)", "payload":{"price": 200, "lamination": 7,"imageNameChunk": "mini"}},
+          {"label": "Миди (335х250 мм)", "payload":{"price": 350, "lamination": 13,"imageNameChunk": "midi" }},
+          {"label": "Макси (370х290 мм)", "payload":{"price": 500, "lamination": 16,"imageNameChunk": "max"}},
+          {"label": "индивидуальный размер", "payload":{"price": "","imageNameChunk": "max"}}
         ]
       },
       {
@@ -34,9 +35,9 @@
         "inputType": "select",
         "options": [
           {"label": "Без полей", "payload":{"add": 0}},
-          {"label": "1 рекламное поле", "payload":{"add": 1.07}},
-          {"label": "3 рекламных поля", "payload":{"add": 1.25}},
-          {"label": "3 рекламных поля + боковые", "payload":{"add": 1.5}}
+          {"label": "1 рекламное поле", "payload":{"add": 1.07, "imageNameChunk": "one_advertising_field"}},
+          {"label": "3 рекламных поля", "payload":{"add": 1.25, "imageNameChunk": "three_advertising_fields"}},
+          {"label": "3 рекламных поля + боковые", "payload":{"add": 1.5, "imageNameChunk": "three_advertising_fields_side_fields"}}
 
         ]
       },
@@ -70,14 +71,16 @@
       {
         "label": "Индивидуальный дизайн",
         "name": "custom",
-        "inputType": "checkbox"
+        "inputType": "checkbox",
+        "payload": {}
       }
     ]
   },
   {
     "label": "Квартальный на 1 пружине",
     "name": "oneSpringsCalendar",
-    "picture": "oneSpringsCalendar.svg",
+    "icon": "icon.svg",
+    "defaultImage": "mini.svg",
     "minPrice": 60,
     "fields": [
       {
@@ -85,8 +88,8 @@
         "name": "size",
         "inputType": "select",
         "options": [
-          {"label": "Размер 297х210 мм", "payload":{"price": 200, "lamination": 7}},
-          {"label": "Размер 335х250 мм", "payload":{"price": 350, "lamination": 13 }}
+          {"label": "Размер 297х210 мм", "payload":{"price": 200, "lamination": 7, "imageNameChunk": "mini"}},
+          {"label": "Размер 335х250 мм", "payload":{"price": 350, "lamination": 13, "imageNameChunk": "midi" }}
         ]
       },
       {
@@ -107,8 +110,8 @@
         "inputType": "select",
         "options": [
           {"label": "Без полей", "payload":{"add": 0}},
-          {"label": "1 рекламное поле", "payload":{"add": 1.07}},
-          {"label": "1 рекламное поле + боковые", "payload":{"add": 1.5}}
+          {"label": "1 рекламное поле", "payload":{"add": 1.07, "imageNameChunk": "one_advertising_field"}},
+          {"label": "1 рекламное поле + боковые", "payload":{"add": 1.5, "imageNameChunk": "one_advertising_field_side_fields"}}
         ]
       },
       {
@@ -141,14 +144,16 @@
       {
         "label": "Индивидуальный дизайн",
         "name": "custom",
-        "inputType": "checkbox"
+        "inputType": "checkbox",
+        "payload": {}
       }
     ]
   },
   {
     "label": "Домики перекидные",
-    "name": "flipHomeCalendar",
-    "picture": "flipHomeCalendar.svg",
+    "name": "flipHouseCalendar",
+    "icon": "icon.svg",
+    "defaultImage": "a4.svg",
     "minPrice": 40,
     "fields": [
       {
@@ -156,10 +161,10 @@
         "name": "size",
         "inputType": "select",
         "options": [
-          {"label": "1/3 А4", "payload":{"price": 200, "lamination": 7}},
-          {"label": "1/3 А4+", "payload":{"price": 350, "lamination": 13 }},
-          {"label": "А5", "payload":{"price": 500, "lamination": 16}},
-          {"label": "индивидуальный размер", "payload":{"price": ""}}
+          {"label": "1/3 А4", "payload":{"price": 200, "lamination": 7, "imageNameChunk": "a4"}},
+          {"label": "1/3 А4+", "payload":{"price": 350, "lamination": 13, "imageNameChunk": "a4+" }},
+          {"label": "А5", "payload":{"price": 500, "lamination": 16, "imageNameChunk": "a5"}},
+          {"label": "индивидуальный размер", "payload":{"price": "", "imageNameChunk": "a5"}}
         ]
       },
       {
@@ -178,7 +183,7 @@
         "inputType": "select",
         "options": [
           {"label": "Без полей", "payload":{"add": 0}},
-          {"label": "1 рекламное поле", "payload":{"multiply": 1.15}}
+          {"label": "1 рекламное поле", "payload":{"multiply": 1.15, "imageNameChunk": "one_advertising_field"}}
         ]
       },
       {
@@ -209,14 +214,16 @@
       {
         "label": "Индивидуальный дизайн",
         "name": "custom",
-        "inputType": "checkbox"
+        "inputType": "checkbox",
+        "payload": {}
       }
     ]
   },
   {
     "label": "Домики самосборные",
-    "name": "selfMadeHomeCalendar",
-    "picture": "selfMadeHomeCalendar.svg",
+    "name": "selfMadeHouseCalendar",
+    "icon": "icon.svg",
+    "defaultImage": "a4_1_3.svg",
     "minPrice": 20,
     "fields": [
       {
@@ -224,8 +231,8 @@
         "name": "size",
         "inputType": "select",
         "options": [
-          {"label": "1/3 А4", "payload":{"price": 0}},
-          {"label": "вертикальный 120х170 мм", "payload":{"price": 0}},
+          {"label": "1/3 А4", "payload":{"price": 0, "imageNameChunk": "a4_1_3"}},
+          {"label": "вертикальный 120х170 мм", "payload":{"price": 0, "imageNameChunk": "vertical"}},
           {"label": "размер на заказ", "payload":{"price": 0}}
 
         ]
@@ -259,14 +266,16 @@
       {
         "label": "Индивидуальный дизайн",
         "name": "custom",
-        "inputType": "checkbox"
+        "inputType": "checkbox",
+        "payload": {}
       }
     ]
   },
   {
     "label": "Карманные",
     "name": "pocketCalendar",
-    "picture": "pocketCalendar.svg",
+    "icon": "icon.svg",
+    "defaultImage": "pocket.svg",
     "minPrice": 8,
     "fields": [
       {
@@ -298,14 +307,16 @@
       {
         "label": "Индивидуальный дизайн",
         "name": "custom",
-        "inputType": "checkbox"
+        "inputType": "checkbox",
+        "payload": {}
       }
     ]
   },
   {
     "label": "Перекидные",
     "name": "flipCalendar",
-    "picture": "flipCalendar.svg",
+    "icon": "icon.svg",
+    "defaultImage": "a1.svg",
     "minPrice": 95,
     "fields": [
       {
@@ -313,11 +324,11 @@
         "name": "size",
         "inputType": "select",
         "options": [
-          {"label": "А4 (210х297 мм)", "payload":{"price": 200, "lamination": 7}},
-          {"label": "A3 (420х297 мм)", "payload":{"price": 350, "lamination": 13 }},
-          {"label": "A2 (594х420 мм)", "payload":{"price": 500, "lamination": 16}},
-          {"label": "A1 (840x594 мм)", "payload":{"price": 500, "lamination": 16}},
-          {"label": "индивидуальный размер", "payload":{"price": ""}}
+          {"label": "А4 (210х297 мм)", "payload":{"price": 200, "lamination": 7, "imageNameChunk": "a4"}},
+          {"label": "A3 (420х297 мм)", "payload":{"price": 350, "lamination": 13, "imageNameChunk": "a3" }},
+          {"label": "A2 (594х420 мм)", "payload":{"price": 500, "lamination": 16, "imageNameChunk": "a2"}},
+          {"label": "A1 (840x594 мм)", "payload":{"price": 500, "lamination": 16, "imageNameChunk": "a1"}},
+          {"label": "индивидуальный размер", "payload":{"price": "", "imageNameChunk": "a1"}}
         ]
       },
       {
@@ -358,7 +369,69 @@
       {
         "label": "Индивидуальный дизайн",
         "name": "custom",
-        "inputType": "checkbox"
+        "inputType": "checkbox",
+        "payload": {}
+      }
+    ]
+  },
+  {
+    "label": "Адвент календари",
+    "name": "adventCalendar",
+    "icon": "icon.svg",
+    "defaultImage": "rectangular.svg",
+    "minPrice": 95,
+    "fields": [
+      {
+        "label": "Размер",
+        "name": "size",
+        "inputType": "select",
+        "options": [
+          {"label": "прямоугольный", "payload":{"price": 200, "lamination": 7, "imageNameChunk": "rectangular"}},
+          {"label": "куб", "payload":{"price": 350, "lamination": 13, "imageNameChunk": "cube" }},
+          {"label": "домик", "payload":{"price": 500, "lamination": 16, "imageNameChunk": "house"}},
+          {"label": "звезда", "payload":{"price": 500, "lamination": 16, "imageNameChunk": "star"}}
+        ]
+      },
+      {
+        "label": "Ламинация",
+        "name": "lamination",
+        "inputType": "select",
+        "options": [
+          {"label": "Без ламинации", "payload":{"add": 0}},
+          {"label": "Глянцевая 1+1 (25 мкр)", "payload":{"add": 8}},
+          {"label": "Матовая 1+1 (25 мкр)", "payload":{"add": 8}}
+        ]
+      },
+      {
+        "label": "Дизайн календарного блока",
+        "name": "design",
+        "inputType": "select",
+        "options": [
+          {"label": "7 листов 4+4", "payload":{"add": 0}},
+          {"label": "12 листов 4+0", "payload":{"add": 0}}
+        ]
+      },
+      {
+        "label": "Тираж",
+        "name": "printRun",
+        "inputType": "select",
+        "options": [
+          {"label": "30", "payload":{"multiply": 80, "sizeMiniPrice": 105,"sizeMidiPrice": 105, "customMini": 1.3, "customMidi": 1.3}},
+          {"label": "50", "payload":{"multiply": 65, "sizeMiniPrice": 85,"sizeMidiPrice": 85, "customMini": 1.2, "customMidi": 1.2}},
+          {"label": "100", "payload":{"multiply": 55,"sizeMiniPrice": 70,"sizeMidiPrice": 70, "customMini": 1.1, "customMidi": 1.1}},
+          {"label": "150", "payload":{"multiply": 50,"sizeMiniPrice": 65,"sizeMidiPrice": 65, "customMini": 1, "customMidi": 1}},
+          {"label": "200", "payload":{"multiply": 45,"sizeMiniPrice": 60,"sizeMidiPrice": 60, "customMini": 1, "customMidi": 1}},
+          {"label": "250", "payload":{"multiply": 45,"sizeMiniPrice": 60,"sizeMidiPrice": 60, "customMini": 1, "customMidi": 1}},
+          {"label": "300", "payload":{"multiply": 40,"sizeMiniPrice": 55,"sizeMidiPrice": 55, "customMini": 1, "customMidi": 1}},
+          {"label": "400", "payload":{"multiply": 40,"sizeMiniPrice": 55,"sizeMidiPrice": 55, "customMini": 1, "customMidi": 1}},
+          {"label": "500", "payload":{"multiply": 40,"sizeMiniPrice": 55,"sizeMidiPrice": 55, "customMini": 1, "customMidi": 1}}
+        ]
+      },
+      {
+        "label": "Индивидуальный дизайн",
+        "name": "custom",
+        "inputType": "checkbox",
+        "payload": {}
       }
     ]
   }

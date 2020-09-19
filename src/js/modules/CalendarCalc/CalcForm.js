@@ -29,7 +29,7 @@ export default class CalcForm extends BaseComponent {
   }
 
   render() {
-    this.template = require('!!pug-loader!./CalcForm.pug');
+    this.template = require('!!pug-loader!./templates/CalcForm.pug');
     this.el.innerHTML = this.template({
       form: this,
     });
