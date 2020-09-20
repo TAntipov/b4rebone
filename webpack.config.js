@@ -128,7 +128,7 @@ module.exports = (env, argv) => {
                   loose: true,
                   useBuiltIns: 'usage',
                   debug: true,
-                  target: 'es2015',
+                  // target: 'es2015',
                   // target in .browserslistrc
                 }]],
               },
@@ -242,6 +242,11 @@ module.exports = (env, argv) => {
                         attribute: 'srcset',
                         type: 'srcset',
                       },
+                      // {
+                      //   tag: 'link',
+                      //   attribute: 'href',
+                      //   type: 'srcset',
+                      // },
                     ],
                   },
                 },

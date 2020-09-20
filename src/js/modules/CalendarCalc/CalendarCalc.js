@@ -14,20 +14,9 @@ export default class CalendarCalc extends BaseComponent {
 
   bindEvents() {
     this.forms.forEach((form, index) => {
-      form.on('change', (e) => {
-        console.log(form.name, e.detail);
-        if (typeof e.detail !== 'undefined') {
-          const src = [];
-          e.detail.forEach((item) => {
-            if (typeof item.payload.imageNameChunk !== 'undefined') {
-              src.push(item.payload.imageNameChunk);
-            }
-          });
-          if (src.length) {
-            const img = form.el.querySelector('.js-form-image');
-            img.src = `assets/svg/${form.name}/${src.join('_')}.svg`;
-          }
-        }
+      form.on('change', () => {
+        const img = form.el.querySelector('.js-form-image');
+        img.src = `/assets/svg/${form.name}/${form.image}`;
       });
 
       this.tabs[index].addEventListener('click', (e) => {

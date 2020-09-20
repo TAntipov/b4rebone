@@ -6,25 +6,44 @@ export default class CalcForm extends BaseComponent {
     Object.assign(this, options);
   }
 
+  setState() {
+    this.state = [];
+    this.image = null;
+    const formData = new FormData(this.el.querySelector('form'));
+    const imgSrc = [];
+    let i = 0;
+
+    formData.forEach(((data) => {
+      const field = this.fields[i];
+      const value = {
+        label: field.label,
+        name: field.name,
+        value: data,
+        payload: field.payload,
+      };
+
+      // Selected options
+      if (field.inputType === 'select') {
+        value.payload = field.options[data].payload;
+      }
+
+      // Sate image
+      if (typeof value.payload.imageNameChunk !== 'undefined') {
+        imgSrc.push(value.payload.imageNameChunk);
+      }
+      this.state.push(value);
+      i += 1;
+    }));
+
+    if (imgSrc.length > 0) {
+      this.image = `${imgSrc.join('_')}.svg`;
+    }
+  }
+
   bindEvents() {
     this.on('change', (e) => {
       e.stopPropagation();
-      const formData = new FormData(this.el.querySelector('form'));
-      const payload = [];
-      let i = 0;
-      formData.forEach(((value) => {
-        const field = this.fields[i];
-        switch (field.inputType) {
-          case 'select':
-            payload.push(field.options[value]);
-            break;
-          default:
-            payload.push(field);
-            break;
-        }
-        i += 1;
-      }));
-      e.detail = payload;
+      this.setState();
     });
   }
 
@@ -35,5 +54,6 @@ export default class CalcForm extends BaseComponent {
     });
     this.bindEvents();
     super.render();
+    this.setState();
   }
 }
