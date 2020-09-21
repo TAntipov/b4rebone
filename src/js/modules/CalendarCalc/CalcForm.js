@@ -31,7 +31,8 @@ export default class CalcForm extends BaseComponent {
       if (typeof value.payload.imageNameChunk !== 'undefined') {
         imgSrc.push(value.payload.imageNameChunk);
       }
-      this.state.push(value);
+      //this.state.push(value);
+      this.state[field.name] = value;
       i += 1;
     }));
 

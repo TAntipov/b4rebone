@@ -15,8 +15,12 @@
     .calc__forms.js-forms
     .calc__checkout
       .calc__totals
-        .calc__totals__cost 123 000 Р
-        .calc__totals__unit-price 1 800 Р за шт.
+        .calc__totals__cost
+          span.js-total-cost 123 000
+          span.calc__totals__cost-currency Р
+        .calc__totals__unit-price
+          span.js-unit-price 1 800
+          span.calc__totals__unit-currency Р за шт.
         form.calc__checkout__form
           input(type='text',placeholder='Имя').calc__input.calc__checkout__name
           input(type='text',placeholder='Телефон').calc__input.calc__checkout__phone
