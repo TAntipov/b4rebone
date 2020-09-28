@@ -88,8 +88,8 @@
         "name": "size",
         "inputType": "select",
         "options": [
-          {"label": "Размер 297х210 мм", "payload":{"price": 200, "lamination": 7, "imageNameChunk": "mini"}},
-          {"label": "Размер 335х250 мм", "payload":{"price": 350, "lamination": 13, "imageNameChunk": "midi" }}
+          {"label": "Размер 297х210 мм", "payload":{"key": "mini","price": 200, "lamination10": 7, "lamination11": 14, "imageNameChunk": "mini"}},
+          {"label": "Размер 335х250 мм", "payload":{"key": "midi","price": 220, "lamination10": 13, "lamination11": 26, "imageNameChunk": "midi" }}
         ]
       },
       {
@@ -97,11 +97,11 @@
         "name": "lamination",
         "inputType": "select",
         "options": [
-          {"label": "Без ламинации", "payload":{"multiply": 0}},
-          {"label": "Глянцевая 1+0", "payload":{"multiply": 1}},
-          {"label": "Глянцевая 1+1", "payload":{"multiply": 2}},
-          {"label": "Матовая 1+0", "payload":{"multiply": 1}},
-          {"label": "Матовая 1+1", "payload":{"multiply": 2}}
+          {"label": "Без ламинации", "payload":{}},
+          {"label": "Глянцевая 1+0", "payload":{"key": "lamination10"}},
+          {"label": "Глянцевая 1+1", "payload":{"key": "lamination11"}},
+          {"label": "Матовая 1+0", "payload":{"key": "lamination10"}},
+          {"label": "Матовая 1+1", "payload":{"key": "lamination11"}}
         ]
       },
       {
@@ -110,8 +110,8 @@
         "inputType": "select",
         "options": [
           {"label": "Без полей", "payload":{"add": 0}},
-          {"label": "1 рекламное поле", "payload":{"add": 1.07, "imageNameChunk": "one_advertising_field"}},
-          {"label": "1 рекламное поле + боковые", "payload":{"add": 1.5, "imageNameChunk": "one_advertising_field_side_fields"}}
+          {"label": "1 рекламное поле", "payload":{"add": 0.1, "imageNameChunk": "one_advertising_field"}},
+          {"label": "1 рекламное поле + боковые", "payload":{"add": 0.2, "imageNameChunk": "one_advertising_field_side_fields"}}
         ]
       },
       {
@@ -119,10 +119,10 @@
         "name": "design",
         "inputType": "select",
         "options": [
-          {"label": "Стандартный серый", "payload":{"add": 0}},
-          {"label": "Стандартный золото", "payload":{"add": 0}},
-          {"label": "Стандартный синий", "payload":{"add": 0}},
-          {"label": "Индивидуальная печать блока", "payload":{"add": 0}}
+          {"label": "Стандартный серый", "payload":{}},
+          {"label": "Стандартный золото", "payload":{}},
+          {"label": "Стандартный синий", "payload":{}},
+          {"label": "Индивидуальная печать блока", "payload":{"key": "individual"}}
         ]
       },
       {
@@ -130,15 +130,15 @@
         "name": "printRun",
         "inputType": "select",
         "options": [
-          {"label": "30", "payload":{"multiply": 30, "sizemini": 100,"sizemidi": 105, "miniCustom": 1.3, "midiCustom": 1.3}},
-          {"label": "50", "payload":{"multiply": 50, "sizemini": 85,"sizemidi": 95, "miniCustom": 1.2, "midiCustom": 1.2}},
-          {"label": "100", "payload":{"multiply": 100,"sizemini": 75,"sizemidi": 85, "miniCustom": 1.1, "midiCustom": 1.1}},
-          {"label": "150", "payload":{"multiply": 150,"sizemini": 70,"sizemidi": 80, "miniCustom": 1, "midiCustom": 1}},
-          {"label": "200", "payload":{"multiply": 200,"sizemini": 65,"sizemidi": 75, "miniCustom": 1, "midiCustom": 1}},
-          {"label": "250", "payload":{"multiply": 250,"sizemini": 65,"sizemidi": 75, "miniCustom": 1, "midiCustom": 1}},
-          {"label": "300", "payload":{"multiply": 300,"sizemini": 60,"sizemidi": 70, "miniCustom": 1, "midiCustom": 1}},
-          {"label": "400", "payload":{"multiply": 400,"sizemini": 60,"sizemidi": 70, "miniCustom": 1, "midiCustom": 1}},
-          {"label": "500", "payload":{"multiply": 500,"sizemini": 60,"sizemidi": 70, "miniCustom": 1, "midiCustom": 1}}
+          {"label": "30", "payload":{"multiply": 30, "mini": 100,"midi": 105, "mini_individual": 1.3, "midi_individual": 1.3}},
+          {"label": "50", "payload":{"multiply": 50, "mini": 85,"midi": 95, "mini_individual": 1.2, "midi_individual": 1.2}},
+          {"label": "100", "payload":{"multiply": 100,"mini": 75,"midi": 85, "mini_individual": 1.1, "midi_individual": 1.1}},
+          {"label": "150", "payload":{"multiply": 150,"mini": 70,"midi": 80, "mini_individual": 1, "midi_individual": 1}},
+          {"label": "200", "payload":{"multiply": 200,"mini": 65,"midi": 75, "mini_individual": 1, "midi_individual": 1}},
+          {"label": "250", "payload":{"multiply": 250,"mini": 65,"midi": 75, "mini_individual": 1, "midi_individual": 1}},
+          {"label": "300", "payload":{"multiply": 300,"mini": 60,"midi": 70, "mini_individual": 1, "midi_individual": 1}},
+          {"label": "400", "payload":{"multiply": 400,"mini": 60,"midi": 70, "mini_individual": 1, "midi_individual": 1}},
+          {"label": "500", "payload":{"multiply": 500,"mini": 60,"midi": 70, "mini_individual": 1, "midi_individual": 1}}
         ]
       },
       {
@@ -161,10 +161,10 @@
         "name": "size",
         "inputType": "select",
         "options": [
-          {"label": "1/3 А4", "payload":{"price": 200, "lamination": 7, "imageNameChunk": "a4"}},
-          {"label": "1/3 А4+", "payload":{"price": 350, "lamination": 13, "imageNameChunk": "a4+" }},
-          {"label": "А5", "payload":{"price": 500, "lamination": 16, "imageNameChunk": "a5"}},
-          {"label": "индивидуальный размер", "payload":{"price": "", "imageNameChunk": "a5"}}
+          {"label": "⅓ А4", "payload":{"key": "a4", "price": 0, "lamination10": 8, "lamination11": 8,"imageNameChunk": "a4"}},
+          {"label": "⅓ А4+", "payload":{"key": "a5", "price": 0, "lamination10": 8, "lamination11": 8 ,"imageNameChunk": "a4+" }},
+          {"label": "А5", "payload":{"key": "a5","price": 0, "lamination10": 8, "lamination11": 8, "imageNameChunk": "a5"}},
+          {"label": "индивидуальный размер", "payload":{"key": "a5", "lamination10": 8, "lamination11": 8, "price": 0, "imageNameChunk": "a5"}}
         ]
       },
       {
@@ -172,9 +172,9 @@
         "name": "lamination",
         "inputType": "select",
         "options": [
-          {"label": "Без ламинации", "payload":{"add": 0}},
-          {"label": "Глянцевая 1+0", "payload":{"add": 8}},
-          {"label": "Матовая 1+0", "payload":{"add": 8}}
+          {"label": "Без ламинации", "payload":{}},
+          {"label": "Глянцевая 1+0", "payload":{"key": "lamination10"}},
+          {"label": "Матовая 1+0", "payload":{"key": "lamination11"}}
         ]
       },
       {
@@ -183,7 +183,7 @@
         "inputType": "select",
         "options": [
           {"label": "Без полей", "payload":{"add": 0}},
-          {"label": "1 рекламное поле", "payload":{"multiply": 1.15, "imageNameChunk": "one_advertising_field"}}
+          {"label": "1 рекламное поле", "payload":{"add": 0.15, "imageNameChunk": "one_advertising_field"}}
         ]
       },
       {
@@ -191,8 +191,8 @@
         "name": "design",
         "inputType": "select",
         "options": [
-          {"label": "7 листов", "payload":{"add": 0}},
-          {"label": "13 листов", "payload":{"add": 0}}
+          {"label": "7 листов", "payload":{"key": "seven"}},
+          {"label": "13 листов", "payload":{"key": "thirteen"}}
         ]
       },
       {
@@ -200,15 +200,16 @@
         "name": "printRun",
         "inputType": "select",
         "options": [
-          {"label": "30", "payload":{"multiply": 80, "sizemini": 105,"sizemidi": 105, "miniCustom": 1.3, "midiCustom": 1.3}},
-          {"label": "50", "payload":{"multiply": 65, "sizemini": 85,"sizemidi": 85, "miniCustom": 1.2, "midiCustom": 1.2}},
-          {"label": "100", "payload":{"multiply": 55,"sizemini": 70,"sizemidi": 70, "miniCustom": 1.1, "midiCustom": 1.1}},
-          {"label": "150", "payload":{"multiply": 50,"sizemini": 65,"sizemidi": 65, "miniCustom": 1, "midiCustom": 1}},
-          {"label": "200", "payload":{"multiply": 45,"sizemini": 60,"sizemidi": 60, "miniCustom": 1, "midiCustom": 1}},
-          {"label": "250", "payload":{"multiply": 45,"sizemini": 60,"sizemidi": 60, "miniCustom": 1, "midiCustom": 1}},
-          {"label": "300", "payload":{"multiply": 40,"sizemini": 55,"sizemidi": 55, "miniCustom": 1, "midiCustom": 1}},
-          {"label": "400", "payload":{"multiply": 40,"sizemini": 55,"sizemidi": 55, "miniCustom": 1, "midiCustom": 1}},
-          {"label": "500", "payload":{"multiply": 40,"sizemini": 55,"sizemidi": 55, "miniCustom": 1, "midiCustom": 1}}
+          {"label": "30", "payload": {"multiply": 30, "a4": 80, "a5":105, "a4_seven": 0.2,  "a4_thirteen": 0.35, "a5_thirteen": 0.15}},
+          {"label": "50", "payload": {"multiply": 50, "a4": 65, "a5":85,  "a4_seven": 0.17, "a4_thirteen": 0.33, "a5_thirteen": 0.25}},
+          {"label": "100", "payload":{"multiply": 100,"a4": 55, "a5":70,  "a4_seven": 0.15, "a4_thirteen": 0.40, "a5_thirteen": 0.28}},
+          {"label": "150", "payload":{"multiply": 150,"a4": 50, "a5":65,  "a4_seven": 0.07, "a4_thirteen": 0.43, "a5_thirteen": 0.35}},
+          {"label": "200", "payload":{"multiply": 200,"a4": 45, "a5":60,  "a4_seven": 0.07, "a4_thirteen": 0.41, "a5_thirteen": 0.3}},
+          {"label": "250", "payload":{"multiply": 250,"a4": 45, "a5":60,  "a4_seven": 0.07, "a4_thirteen": 0.39, "a5_thirteen": 0.25}},
+          {"label": "300", "payload":{"multiply": 300,"a4": 40, "a5":55,  "a4_seven": 0.07, "a4_thirteen": 0.37, "a5_thirteen": 0.17}},
+          {"label": "400", "payload":{"multiply": 400,"a4": 40, "a5":55,  "a4_seven": 0.07, "a4_thirteen": 0.25, "a5_thirteen": 0.15}},
+          {"label": "500", "payload":{"multiply": 500,"a4": 40, "a5":55,  "a4_seven": 0.05, "a4_thirteen": 0.2 , "a5_thirteen": 0.15 }}
+
         ]
       },
       {
@@ -231,9 +232,9 @@
         "name": "size",
         "inputType": "select",
         "options": [
-          {"label": "1/3 А4", "payload":{"price": 0, "imageNameChunk": "a4_1_3"}},
-          {"label": "вертикальный 120х170 мм", "payload":{"price": 0, "imageNameChunk": "vertical"}},
-          {"label": "размер на заказ", "payload":{"price": 0}}
+          {"label": "1/3 А4", "payload":{"key":"a4", "price": 0, "lamination10": 10, "imageNameChunk": "a4_1_3"}},
+          {"label": "вертикальный 120х170 мм", "payload":{"key":"a4", "price": 0, "lamination10": 10, "imageNameChunk": "vertical"}},
+          {"label": "размер на заказ", "payload":{"key":"a4", "price": 0, "lamination10": 10, "imageNameChunk": "vertical"}}
 
         ]
       },
@@ -242,9 +243,9 @@
         "name": "lamination",
         "inputType": "select",
         "options": [
-          {"label": "Без ламинации", "payload":{"add": 0}},
-          {"label": "Глянцевая 1+0", "payload":{"add": 10}},
-          {"label": "Матовая 1+0", "payload":{"add": 10}}
+          {"label": "Без ламинации", "payload":{}},
+          {"label": "Глянцевая 1+0", "payload":{"key": "lamination10"}},
+          {"label": "Матовая 1+0", "payload":{"key": "lamination10"}}
         ]
       },
       {
@@ -252,15 +253,15 @@
         "name": "printRun",
         "inputType": "select",
         "options": [
-          {"label": "30", "payload":{"multiply": 80, "sizemini": 40,"sizemidi": 40, "miniCustom": 1.3, "midiCustom": 1.3}},
-          {"label": "50", "payload":{"multiply": 65, "sizemini": 35,"sizemidi": 35, "miniCustom": 1.2, "midiCustom": 1.2}},
-          {"label": "100", "payload":{"multiply": 55,"sizemini": 30,"sizemidi": 30, "miniCustom": 1.1, "midiCustom": 1.1}},
-          {"label": "150", "payload":{"multiply": 50,"sizemini": 25,"sizemidi": 25, "miniCustom": 1, "midiCustom": 1}},
-          {"label": "200", "payload":{"multiply": 45,"sizemini": 24,"sizemidi": 24, "miniCustom": 1, "midiCustom": 1}},
-          {"label": "250", "payload":{"multiply": 45,"sizemini": 23,"sizemidi": 23, "miniCustom": 1, "midiCustom": 1}},
-          {"label": "300", "payload":{"multiply": 40,"sizemini": 22,"sizemidi": 22, "miniCustom": 1, "midiCustom": 1}},
-          {"label": "400", "payload":{"multiply": 40,"sizemini": 21,"sizemidi": 21, "miniCustom": 1, "midiCustom": 1}},
-          {"label": "500", "payload":{"multiply": 40,"sizemini": 20,"sizemidi": 20, "miniCustom": 1, "midiCustom": 1}}
+          {"label": "30", "payload": {"multiply": 30, "a4": 40}},
+          {"label": "50", "payload": {"multiply": 50, "a4": 35}},
+          {"label": "100", "payload":{"multiply": 100,"a4": 30}},
+          {"label": "150", "payload":{"multiply": 150,"a4": 25}},
+          {"label": "200", "payload":{"multiply": 200,"a4": 24}},
+          {"label": "250", "payload":{"multiply": 250,"a4": 23}},
+          {"label": "300", "payload":{"multiply": 300,"a4": 22}},
+          {"label": "400", "payload":{"multiply": 400,"a4": 21}},
+          {"label": "500", "payload":{"multiply": 500,"a4": 20}}
         ]
       },
       {
@@ -283,9 +284,21 @@
         "name": "size",
         "inputType": "select",
         "options": [
-          {"label": "70х100 мм", "payload":{"price": 0}},
-          {"label": "размер на заказ", "payload":{"price": 0}}
+          {"label": "70х100 мм", "payload":{"key": "mini","price": 0, "imageNameChunk": "pocket"}},
+          {"label": "размер на заказ", "payload":{"key": "mini","price": 0, "imageNameChunk": "pocket"}}
 
+        ]
+      },
+      {
+        "label": "Ламинация",
+        "name": "lamination",
+        "inputType": "select",
+        "options": [
+          {"label": "Глянцевая 1+1 (32 мкр)", "payload":{"add": 0.2}},
+          {"label": "Матовая 1+1 (32 мкр)", "payload":{"add": 0.2}},
+          {"label": "Глянцевая 1+1 (72 мкр)", "payload":{"add": 0.2}},
+          {"label": "Матовая 1+1 (72 мкр)", "payload":{"add": 0.2}},
+          {"label": "Soft touch (30 мкр)", "payload":{"add": 0.3}}
         ]
       },
       {
@@ -293,15 +306,13 @@
         "name": "printRun",
         "inputType": "select",
         "options": [
-          {"label": "30", "payload":{"multiply": 80, "sizemini": 40,"sizemidi": 40, "miniCustom": 1.3, "midiCustom": 1.3}},
-          {"label": "50", "payload":{"multiply": 65, "sizemini": 35,"sizemidi": 35, "miniCustom": 1.2, "midiCustom": 1.2}},
-          {"label": "100", "payload":{"multiply": 55,"sizemini": 30,"sizemidi": 30, "miniCustom": 1.1, "midiCustom": 1.1}},
-          {"label": "150", "payload":{"multiply": 50,"sizemini": 25,"sizemidi": 25, "miniCustom": 1, "midiCustom": 1}},
-          {"label": "200", "payload":{"multiply": 45,"sizemini": 24,"sizemidi": 24, "miniCustom": 1, "midiCustom": 1}},
-          {"label": "250", "payload":{"multiply": 45,"sizemini": 23,"sizemidi": 23, "miniCustom": 1, "midiCustom": 1}},
-          {"label": "300", "payload":{"multiply": 40,"sizemini": 22,"sizemidi": 22, "miniCustom": 1, "midiCustom": 1}},
-          {"label": "400", "payload":{"multiply": 40,"sizemini": 21,"sizemidi": 21, "miniCustom": 1, "midiCustom": 1}},
-          {"label": "500", "payload":{"multiply": 40,"sizemini": 20,"sizemidi": 20, "miniCustom": 1, "midiCustom": 1}}
+          {"label": "50", "payload": {"multiply": 30, "mini": 50}},
+          {"label": "100", "payload":{"multiply": 100,"mini": 25}},
+          {"label": "200", "payload":{"multiply": 200,"mini": 20}},
+          {"label": "300", "payload":{"multiply": 300,"mini": 15}},
+          {"label": "400", "payload":{"multiply": 400,"mini": 12}},
+          {"label": "500", "payload":{"multiply": 500,"mini": 10}},
+          {"label": "1000", "payload":{"multiply": 1000,"mini": 8}}
         ]
       },
       {
@@ -324,11 +335,10 @@
         "name": "size",
         "inputType": "select",
         "options": [
-          {"label": "А4 (210х297 мм)", "payload":{"price": 200, "lamination": 7, "imageNameChunk": "a4"}},
-          {"label": "A3 (420х297 мм)", "payload":{"price": 350, "lamination": 13, "imageNameChunk": "a3" }},
-          {"label": "A2 (594х420 мм)", "payload":{"price": 500, "lamination": 16, "imageNameChunk": "a2"}},
-          {"label": "A1 (840x594 мм)", "payload":{"price": 500, "lamination": 16, "imageNameChunk": "a1"}},
-          {"label": "индивидуальный размер", "payload":{"price": "", "imageNameChunk": "a1"}}
+          {"label": "А4 (210х297 мм)", "payload":{"key": "a4", "price": 200, "imageNameChunk": "a4"}},
+          {"label": "A3 (420х297 мм)", "payload":{"key": "a3", "price": 350, "imageNameChunk": "a3"}},
+          {"label": "A2 (594х420 мм)", "payload":{"key": "a2", "price": 500, "imageNameChunk": "a2"}},
+          {"label": "A1 (840x594 мм)", "payload":{"key": "a1", "price": 500, "imageNameChunk": "a1"}}
         ]
       },
       {
@@ -336,9 +346,9 @@
         "name": "lamination",
         "inputType": "select",
         "options": [
-          {"label": "Без ламинации", "payload":{"add": 0}},
-          {"label": "Глянцевая 1+1 (25 мкр)", "payload":{"add": 8}},
-          {"label": "Матовая 1+1 (25 мкр)", "payload":{"add": 8}}
+          {"label": "Без ламинации", "payload":{"key": ""}},
+          {"label": "Глянцевая 1+1 (25 мкр)", "payload":{"key": "lamination11"}},
+          {"label": "Матовая 1+1 (25 мкр)", "payload":{"key": "lamination11"}}
         ]
       },
       {
@@ -346,8 +356,8 @@
         "name": "design",
         "inputType": "select",
         "options": [
-          {"label": "7 листов 4+4", "payload":{"add": 0}},
-          {"label": "12 листов 4+0", "payload":{"add": 0}}
+          {"label": "7 листов 4+4", "payload":{"key":"seven", "add": 7}},
+          {"label": "13 листов 4+0", "payload":{"key":"thirteen", "add": 13}}
         ]
       },
       {
@@ -355,15 +365,15 @@
         "name": "printRun",
         "inputType": "select",
         "options": [
-          {"label": "30", "payload":{"multiply": 80, "sizemini": 105,"sizemidi": 105, "miniCustom": 1.3, "midiCustom": 1.3}},
-          {"label": "50", "payload":{"multiply": 65, "sizemini": 85,"sizemidi": 85, "miniCustom": 1.2, "midiCustom": 1.2}},
-          {"label": "100", "payload":{"multiply": 55,"sizemini": 70,"sizemidi": 70, "miniCustom": 1.1, "midiCustom": 1.1}},
-          {"label": "150", "payload":{"multiply": 50,"sizemini": 65,"sizemidi": 65, "miniCustom": 1, "midiCustom": 1}},
-          {"label": "200", "payload":{"multiply": 45,"sizemini": 60,"sizemidi": 60, "miniCustom": 1, "midiCustom": 1}},
-          {"label": "250", "payload":{"multiply": 45,"sizemini": 60,"sizemidi": 60, "miniCustom": 1, "midiCustom": 1}},
-          {"label": "300", "payload":{"multiply": 40,"sizemini": 55,"sizemidi": 55, "miniCustom": 1, "midiCustom": 1}},
-          {"label": "400", "payload":{"multiply": 40,"sizemini": 55,"sizemidi": 55, "miniCustom": 1, "midiCustom": 1}},
-          {"label": "500", "payload":{"multiply": 40,"sizemini": 55,"sizemidi": 55, "miniCustom": 1, "midiCustom": 1}}
+          {"label": "10", "payload": {"multiply": 10, "a4_seven": 190, "a3_seven": 255,"a4_seven_lamination11": 11, "a3_seven_lamination11": 15, "a2_seven": 1050,"a1_seven": 1550,"a4_thirteen": 180, "a3_thirteen": 280,"a4_thirteen_lamination11": 9, "a3_thirteen_lamination11": 16, "a2_thirteen": 1150,"a1_thirteen": 0}},
+          {"label": "20", "payload": {"multiply": 20, "a4_seven": 175, "a3_seven": 230,"a4_seven_lamination11": 10, "a3_seven_lamination11": 14, "a2_seven": 980, "a1_seven": 1400,"a4_thirteen": 165, "a3_thirteen": 275,"a4_thirteen_lamination11": 9, "a3_thirteen_lamination11": 16, "a2_thirteen": 1060,"a1_thirteen": 0}},
+          {"label": "30", "payload": {"multiply": 30, "a4_seven": 150, "a3_seven": 220,"a4_seven_lamination11": 10, "a3_seven_lamination11": 13, "a2_seven": 920, "a1_seven": 1370,"a4_thirteen": 160, "a3_thirteen": 270,"a4_thirteen_lamination11": 9, "a3_thirteen_lamination11": 15, "a2_thirteen": 1000,"a1_thirteen": 0}},
+          {"label": "50", "payload": {"multiply": 50, "a4_seven": 135, "a3_seven": 210,"a4_seven_lamination11": 9, "a3_seven_lamination11": 13, "a2_seven": 890,  "a1_seven": 1340,"a4_thirteen": 155,  "a3_thirteen": 240,"a4_thirteen_lamination11": 8, "a3_thirteen_lamination11": 15, "a2_thirteen": 965, "a1_thirteen": 0}},
+          {"label": "100", "payload":{"multiply": 100,"a4_seven": 125, "a3_seven": 190,"a4_seven_lamination11": 9, "a3_seven_lamination11": 13, "a2_seven": 850,  "a1_seven": 1300,"a4_thirteen": 140,  "a3_thirteen": 195,"a4_thirteen_lamination11": 8, "a3_thirteen_lamination11": 14, "a2_thirteen": 920, "a1_thirteen": 0}},
+          {"label": "150", "payload":{"multiply": 150,"a4_seven": 120, "a3_seven": 160,"a4_seven_lamination11": 8, "a3_seven_lamination11": 13, "a2_seven": 0,    "a1_seven": 0   ,"a4_thirteen": 120,  "a3_thirteen": 190,"a4_thirteen_lamination11": 8, "a3_thirteen_lamination11": 14, "a2_thirteen": 0,   "a1_thirteen": 0}},
+          {"label": "200", "payload":{"multiply": 200,"a4_seven": 110, "a3_seven": 150,"a4_seven_lamination11": 7, "a3_seven_lamination11": 13, "a2_seven": 0,    "a1_seven": 0   ,"a4_thirteen": 115,  "a3_thirteen": 185,"a4_thirteen_lamination11": 7, "a3_thirteen_lamination11": 14, "a2_thirteen": 0,   "a1_thirteen": 0}},
+          {"label": "250", "payload":{"multiply": 250,"a4_seven": 105, "a3_seven": 145,"a4_seven_lamination11": 7, "a3_seven_lamination11": 12, "a2_seven": 0,    "a1_seven": 0   ,"a4_thirteen": 110,  "a3_thirteen": 185,"a4_thirteen_lamination11": 7, "a3_thirteen_lamination11": 14, "a2_thirteen": 0,   "a1_thirteen": 0}},
+          {"label": "300", "payload":{"multiply": 300,"a4_seven": 95,  "a3_seven": 140,"a4_seven_lamination11": 7,  "a3_seven_lamination11": 12, "a2_seven": 0,   "a1_seven": 0   ,"a4_thirteen": 105, "a3_thirteen": 185,"a4_thirteen_lamination11": 7, "a3_thirteen_lamination11": 14, "a2_thirteen": 0,   "a1_thirteen": 0}}
         ]
       },
       {

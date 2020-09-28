@@ -42,7 +42,7 @@ module.exports = (env, argv) => {
 
   const fileLoaderOptions = {
     outputPath: '../assets/',
-    publicPath: '/assets/',
+    publicPath: 'assets/',
     regExp: /assets\/([\s\S]+)/,
     esModule: false,
     name: '[1]',
@@ -152,7 +152,9 @@ module.exports = (env, argv) => {
           use: [
             {
               loader: 'file-loader',
-              options: fileLoaderOptions,
+              options: Object.assign(fileLoaderOptions, {
+                publicPath: '../assets/',
+              }),
             },
           ],
         },
@@ -200,7 +202,9 @@ module.exports = (env, argv) => {
           use: [
             {
               loader: 'file-loader',
-              options: fileLoaderOptions,
+              options: Object.assign(fileLoaderOptions, {
+                publicPath: 'assets/',
+              }),
             },
             {
               loader: 'svgo-loader',

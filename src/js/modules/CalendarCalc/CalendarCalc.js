@@ -28,28 +28,67 @@ export default class CalendarCalc extends BaseComponent {
     this.unitPrice = 0;
     this.totalCost = 0;
 
-    if (this.activeForm.name === 'threeSpringsCalendar') {
-      const { state } = this.activeForm;
-      const printRun = state.printRun.payload.multiply;
-      const baseUnitPrice = state.printRun.payload[state.size.payload.key];
-      const lamination = (typeof state.lamination.payload.key !== 'undefined') ? state.size.payload[state.lamination.payload.key] : 0;
-      const design = (typeof state.design.payload.key !== 'undefined') ? state.printRun.payload[`${state.size.payload.key}_${state.design.payload.key}`] * state.size.payload.price : 0;
-      const advFields = baseUnitPrice * state.advFields.payload.add;
+    const { state } = this.activeForm;
+    const printRun = state.printRun.payload.multiply;
+    let baseUnitPrice = 0;
+    let lamination = 0;
+    let design = 0;
+    let advFields = 0;
 
-      // Calculate
-      this.unitPrice = baseUnitPrice + lamination + design + advFields;
-      this.totalCost = this.unitPrice * printRun;
+    if (this.activeForm.name === 'threeSpringsCalendar'
+      || this.activeForm.name === 'oneSpringsCalendar') {
+      baseUnitPrice = state.printRun.payload[state.size.payload.key];
+      lamination = (typeof state.lamination.payload.key !== 'undefined') ? state.size.payload[state.lamination.payload.key] : 0;
+      design = (typeof state.design.payload.key !== 'undefined') ? state.printRun.payload[`${state.size.payload.key}_${state.design.payload.key}`] * state.size.payload.price : 0;
+      advFields = baseUnitPrice * state.advFields.payload.add;
     }
 
-    this.el.querySelector(this.unitPriceSelector).innerHTML = this.priceFormatter.format(this.unitPrice);
-    this.el.querySelector(this.totalCostSelector).innerHTML = this.priceFormatter.format(this.totalCost);
+    if (this.activeForm.name === 'flipHouseCalendar'
+      || this.activeForm.name === 'selfMadeHouseCalendar') {
+      baseUnitPrice = state.printRun.payload[state.size.payload.key];
+      lamination = (typeof state.lamination.payload.key !== 'undefined') ? state.size.payload[state.lamination.payload.key] : 0;
+
+      if (typeof state.design !== 'undefined') {
+        const designPriceKey = `${state.size.payload.key}_${state.design.payload.key}`;
+        design = (typeof state.printRun.payload[designPriceKey] !== 'undefined') ? state.printRun.payload[designPriceKey] * baseUnitPrice : 0;
+      }
+
+      if (typeof state.advFields !== 'undefined') {
+        advFields = baseUnitPrice * state.advFields.payload.add;
+      }
+    }
+
+    if (this.activeForm.name === 'pocketCalendar') {
+      baseUnitPrice = state.printRun.payload[state.size.payload.key];
+      lamination += baseUnitPrice * state.lamination.payload.add;
+    }
+
+    if (this.activeForm.name === 'flipCalendar') {
+      const designPriceKey = `${state.size.payload.key}_${state.design.payload.key}`;
+      lamination = state.printRun.payload[`${designPriceKey}_${state.lamination.payload.key}`] * state.design.payload.add || 0;
+      baseUnitPrice = state.printRun.payload[designPriceKey];
+    }
+
+    // Calculate
+    console.log(
+      `Base price: ${baseUnitPrice}`,
+      `Lamination: ${lamination}`,
+      `Design: ${design}`,
+      `Adv fields: ${advFields}`,
+    );
+
+    this.unitPrice = baseUnitPrice + lamination + design + advFields;
+    this.totalCost = this.unitPrice * printRun;
+
+    this.unitPriceContainer.innerHTML = this.priceFormatter.format(this.unitPrice);
+    this.totalCostContainer.innerHTML = this.priceFormatter.format(this.totalCost);
   }
 
   bindEvents() {
     this.forms.forEach((form, index) => {
       form.on('change', () => {
         const img = form.el.querySelector('.js-form-image');
-        img.src = `/assets/svg/${form.name}/${form.image}`;
+        img.src = `assets/svg/${form.name}/${form.image}`;
         this.calculate();
       });
 
@@ -101,6 +140,8 @@ export default class CalendarCalc extends BaseComponent {
     super.render();
     this.mountForms();
     this.tabs = this.el.querySelectorAll(this.tabLinkSelector);
+    this.unitPriceContainer = this.el.querySelector(this.unitPriceSelector);
+    this.totalCostContainer = this.el.querySelector(this.totalCostSelector);
     this.bindEvents();
     this.tabs[0].click();
   }
