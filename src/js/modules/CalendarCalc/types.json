@@ -396,29 +396,20 @@
         "name": "size",
         "inputType": "select",
         "options": [
-          {"label": "прямоугольный", "payload":{"price": 200, "lamination": 7, "imageNameChunk": "rectangular"}},
-          {"label": "куб", "payload":{"price": 350, "lamination": 13, "imageNameChunk": "cube" }},
-          {"label": "домик", "payload":{"price": 500, "lamination": 16, "imageNameChunk": "house"}},
-          {"label": "звезда", "payload":{"price": 500, "lamination": 16, "imageNameChunk": "star"}}
+          {"label": "Прямоугольный Ferrero", "payload":{"key":"ferrero", "price": 0, "imageNameChunk": "rectangular"}},
+          {"label": "Прямоугольный O'ZERA", "payload":{"key":"ozera", "price": 0, "imageNameChunk": "rectangular"}},
+          {"label": "Куб", "payload":{"key":"cube", "price": 0, "imageNameChunk": "cube" }},
+          {"label": "Домик", "payload":{"key":"house", "price": 0, "imageNameChunk": "house"}},
+          {"label": "Звезда", "payload":{"key":"star", "price": 0,  "imageNameChunk": "star"}}
         ]
       },
       {
-        "label": "Ламинация",
-        "name": "lamination",
-        "inputType": "select",
-        "options": [
-          {"label": "Без ламинации", "payload":{"add": 0}},
-          {"label": "Глянцевая 1+1 (25 мкр)", "payload":{"add": 8}},
-          {"label": "Матовая 1+1 (25 мкр)", "payload":{"add": 8}}
-        ]
-      },
-      {
-        "label": "Дизайн календарного блока",
+        "label": "Нанесение логотипа",
         "name": "design",
         "inputType": "select",
         "options": [
-          {"label": "7 листов 4+4", "payload":{"add": 0}},
-          {"label": "12 листов 4+0", "payload":{"add": 0}}
+          {"label": "Печать", "payload": {}},
+          {"label": "Тиснение", "payload": {"key": "emboss"}}
         ]
       },
       {
@@ -426,15 +417,15 @@
         "name": "printRun",
         "inputType": "select",
         "options": [
-          {"label": "30", "payload":{"multiply": 80, "sizemini": 105,"sizemidi": 105, "miniCustom": 1.3, "midiCustom": 1.3}},
-          {"label": "50", "payload":{"multiply": 65, "sizemini": 85,"sizemidi": 85, "miniCustom": 1.2, "midiCustom": 1.2}},
-          {"label": "100", "payload":{"multiply": 55,"sizemini": 70,"sizemidi": 70, "miniCustom": 1.1, "midiCustom": 1.1}},
-          {"label": "150", "payload":{"multiply": 50,"sizemini": 65,"sizemidi": 65, "miniCustom": 1, "midiCustom": 1}},
-          {"label": "200", "payload":{"multiply": 45,"sizemini": 60,"sizemidi": 60, "miniCustom": 1, "midiCustom": 1}},
-          {"label": "250", "payload":{"multiply": 45,"sizemini": 60,"sizemidi": 60, "miniCustom": 1, "midiCustom": 1}},
-          {"label": "300", "payload":{"multiply": 40,"sizemini": 55,"sizemidi": 55, "miniCustom": 1, "midiCustom": 1}},
-          {"label": "400", "payload":{"multiply": 40,"sizemini": 55,"sizemidi": 55, "miniCustom": 1, "midiCustom": 1}},
-          {"label": "500", "payload":{"multiply": 40,"sizemini": 55,"sizemidi": 55, "miniCustom": 1, "midiCustom": 1}}
+          {"label": "30", "payload": {"multiply": 30, "ferrero": 900,"ozera": 700, "house": 900, "cube": 0  , "star": 0   , "emboss": 100   }},
+          {"label": "50", "payload": {"multiply": 50, "ferrero": 890,"ozera": 690, "house": 850, "cube": 0  , "star": 0   , "emboss": 80   }},
+          {"label": "100", "payload":{"multiply": 100,"ferrero": 870,"ozera": 670, "house": 800, "cube": 0  , "star": 0   , "emboss": 50   }},
+          {"label": "150", "payload":{"multiply": 150,"ferrero": 860,"ozera": 660, "house": 750, "cube": 900, "star": 1200, "emboss": 50}},
+          {"label": "200", "payload":{"multiply": 200,"ferrero": 850,"ozera": 650, "house": 700, "cube": 850, "star": 1150, "emboss": 50}},
+          {"label": "250", "payload":{"multiply": 250,"ferrero": 830,"ozera": 630, "house": 650, "cube": 800, "star": 1100, "emboss": 50}},
+          {"label": "300", "payload":{"multiply": 300,"ferrero": 820,"ozera": 620, "house": 650, "cube": 750, "star": 1000, "emboss": 50}},
+          {"label": "400", "payload":{"multiply": 400,"ferrero": 800,"ozera": 600, "house": 650, "cube": 700, "star": 950 , "emboss": 50 }},
+          {"label": "500", "payload":{"multiply": 500,"ferrero": 780,"ozera": 580, "house": 650, "cube": 650, "star": 900 , "emboss": 50 }}
         ]
       },
       {

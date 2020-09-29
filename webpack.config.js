@@ -48,6 +48,14 @@ module.exports = (env, argv) => {
     name: '[1]',
   };
 
+  const cssfileLoaderOptions = {
+    outputPath: '../assets/',
+    publicPath: '../assets/',
+    regExp: /assets\/([\s\S]+)/,
+    esModule: false,
+    name: '[1]',
+  };
+
   const webpackConfig = {
     entry: {
       index: Path.resolve(__dirname, DIR_SRC, 'js', 'index.js'),
@@ -152,9 +160,7 @@ module.exports = (env, argv) => {
           use: [
             {
               loader: 'file-loader',
-              options: Object.assign(fileLoaderOptions, {
-                publicPath: '../assets/',
-              }),
+              options: cssfileLoaderOptions,
             },
           ],
         },

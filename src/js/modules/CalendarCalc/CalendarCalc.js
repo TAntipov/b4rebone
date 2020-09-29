@@ -1,5 +1,7 @@
 import BaseComponent from '../BaseComponent';
 import CalcForm from './CalcForm';
+import CalcFactory from './modules/CalcFactory';
+import Calc from './modules/Calc/Calc';
 
 export default class CalendarCalc extends BaseComponent {
   constructor(el) {
@@ -23,65 +25,13 @@ export default class CalendarCalc extends BaseComponent {
   }
 
   calculate() {
-    console.log(this.activeForm.name);
+    const Calculator = CalcFactory.createCalc(this.activeForm);
 
-    this.unitPrice = 0;
-    this.totalCost = 0;
-
-    const { state } = this.activeForm;
-    const printRun = state.printRun.payload.multiply;
-    let baseUnitPrice = 0;
-    let lamination = 0;
-    let design = 0;
-    let advFields = 0;
-
-    if (this.activeForm.name === 'threeSpringsCalendar'
-      || this.activeForm.name === 'oneSpringsCalendar') {
-      baseUnitPrice = state.printRun.payload[state.size.payload.key];
-      lamination = (typeof state.lamination.payload.key !== 'undefined') ? state.size.payload[state.lamination.payload.key] : 0;
-      design = (typeof state.design.payload.key !== 'undefined') ? state.printRun.payload[`${state.size.payload.key}_${state.design.payload.key}`] * state.size.payload.price : 0;
-      advFields = baseUnitPrice * state.advFields.payload.add;
+    if (Calculator instanceof Calc) {
+      const result = Calculator.calculate();
+      this.unitPriceContainer.innerHTML = result.unitPrice;
+      this.totalCostContainer.innerHTML = result.totalCost;
     }
-
-    if (this.activeForm.name === 'flipHouseCalendar'
-      || this.activeForm.name === 'selfMadeHouseCalendar') {
-      baseUnitPrice = state.printRun.payload[state.size.payload.key];
-      lamination = (typeof state.lamination.payload.key !== 'undefined') ? state.size.payload[state.lamination.payload.key] : 0;
-
-      if (typeof state.design !== 'undefined') {
-        const designPriceKey = `${state.size.payload.key}_${state.design.payload.key}`;
-        design = (typeof state.printRun.payload[designPriceKey] !== 'undefined') ? state.printRun.payload[designPriceKey] * baseUnitPrice : 0;
-      }
-
-      if (typeof state.advFields !== 'undefined') {
-        advFields = baseUnitPrice * state.advFields.payload.add;
-      }
-    }
-
-    if (this.activeForm.name === 'pocketCalendar') {
-      baseUnitPrice = state.printRun.payload[state.size.payload.key];
-      lamination += baseUnitPrice * state.lamination.payload.add;
-    }
-
-    if (this.activeForm.name === 'flipCalendar') {
-      const designPriceKey = `${state.size.payload.key}_${state.design.payload.key}`;
-      lamination = state.printRun.payload[`${designPriceKey}_${state.lamination.payload.key}`] * state.design.payload.add || 0;
-      baseUnitPrice = state.printRun.payload[designPriceKey];
-    }
-
-    // Calculate
-    console.log(
-      `Base price: ${baseUnitPrice}`,
-      `Lamination: ${lamination}`,
-      `Design: ${design}`,
-      `Adv fields: ${advFields}`,
-    );
-
-    this.unitPrice = baseUnitPrice + lamination + design + advFields;
-    this.totalCost = this.unitPrice * printRun;
-
-    this.unitPriceContainer.innerHTML = this.priceFormatter.format(this.unitPrice);
-    this.totalCostContainer.innerHTML = this.priceFormatter.format(this.totalCost);
   }
 
   bindEvents() {
