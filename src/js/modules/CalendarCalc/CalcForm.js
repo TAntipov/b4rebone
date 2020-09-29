@@ -45,6 +45,27 @@ export default class CalcForm extends BaseComponent {
     this.on('change', (e) => {
       e.stopPropagation();
       this.setState();
+
+      if (this.name === 'flipCalendar') {
+        this.el.querySelectorAll('input,select')
+          .forEach((item) => {
+            item.classList.remove('disabled');
+          });
+
+        const laminationEl = this.el.querySelector('select[name=lamination]');
+        const designEl = this.el.querySelector('select[name=design]');
+        if (this.state.size.payload.key === 'a2') {
+          laminationEl.getElementsByTagName('option')[0].selected = 'selected';
+          laminationEl.classList.add('disabled');
+        }
+
+        if (this.state.size.payload.key === 'a1') {
+          laminationEl.getElementsByTagName('option')[0].selected = 'selected';
+          laminationEl.classList.add('disabled');
+          designEl.getElementsByTagName('option')[0].selected = 'selected';
+          designEl.classList.add('disabled');
+        }
+      }
     });
   }
 

@@ -4,6 +4,8 @@ export default class Calc {
       throw new TypeError('Cannot construct Calc instances directly');
     }
 
+    console.log(state);
+
     this.printRun = state.printRun.payload.multiply;
     this.baseUnitPrice = 0;
     this.lamination = 0;
