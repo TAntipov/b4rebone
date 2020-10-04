@@ -2,6 +2,8 @@ import BaseComponent from '../BaseComponent';
 import CalcForm from './CalcForm';
 import CalcFactory from './modules/CalcFactory';
 import Calc from './modules/Calc/Calc';
+import CalcFormFlipCalendar from './CalcFromFlipCalendar';
+import CalcFormAdventCalendar from './CalcFromAdventCalendar';
 
 export default class CalendarCalc extends BaseComponent {
   constructor(el) {
@@ -64,12 +66,26 @@ export default class CalendarCalc extends BaseComponent {
 
       this.el.querySelector(this.formsContainerSelector)
         .appendChild(element);
-      const form = new CalcForm(element, this.types[index]);
+
+      const FormClass = this.getFormClass(this.types[index].name);
+      const form = new FormClass(element, this.types[index]);
+
       form.render();
       this.forms.push(form);
     });
 
     //this.setActiveForm(this.forms[0]);
+  }
+
+  getFormClass(name) {
+    switch (name) {
+      case 'flipCalendar':
+        return CalcFormFlipCalendar;
+      case 'adventCalendar':
+        return CalcFormAdventCalendar;
+      default:
+        return CalcForm;
+    }
   }
 
   setActiveForm(form) {

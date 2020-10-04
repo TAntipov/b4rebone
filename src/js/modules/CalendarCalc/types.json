@@ -11,9 +11,9 @@
         "name": "size",
         "inputType": "select",
         "options": [
-          {"label": "Мини (297х210 мм)", "payload":{"key": "mini", "price": 200, "lamination10": 7, "lamination11": 14, "imageNameChunk": "mini"}},
-          {"label": "Миди (335х250 мм)", "payload":{"key": "midi", "price": 220, "lamination10": 13, "lamination11": 26,"imageNameChunk": "midi" }},
-          {"label": "Макси (370х290 мм)", "payload":{"key": "max", "price": 250, "lamination10": 16, "lamination11": 32,"imageNameChunk": "max"}},
+          {"label": "Мини (297х210 мм)", "payload":{"key": "mini", "price": 200, "lamination10": 7, "lamination11": 14, "imageNameChunk": "mini", "descr":[{"name": "Постер", "value":"297x210 мм"},{"name": "Календарный блок","value": "297x145 мм"}]}},
+          {"label": "Миди (335х250 мм)", "payload":{"key": "midi", "price": 220, "lamination10": 13, "lamination11": 26,"imageNameChunk": "midi", "descr":[{"name": "Постер", "value":"335x250 мм"},{"name": "Календарный блок","value": "335x160 мм"}] }},
+          {"label": "Макси (370х290 мм)","payload":{"key": "max", "price": 250, "lamination10": 16, "lamination11": 32,"imageNameChunk": "max", "descr":[{"name": "Постер", "value":"370x290 мм"},{"name": "Календарный блок","value": "370x170 мм"}]}},
           {"label": "индивидуальный размер", "payload":{"key": "max", "price": 250, "lamination10": 16, "lamination11": 32,"imageNameChunk": "max"}}
         ]
       },
@@ -35,9 +35,9 @@
         "inputType": "select",
         "options": [
           {"label": "Без полей", "payload":{"add": 0}},
-          {"label": "1 рекламное поле", "payload":{"add": 0.07, "imageNameChunk": "one_advertising_field"}},
-          {"label": "3 рекламных поля", "payload":{"add": 0.25, "imageNameChunk": "three_advertising_fields"}},
-          {"label": "3 рекламных поля + боковые", "payload":{"add": 0.5, "imageNameChunk": "three_advertising_fields_side_fields"}}
+          {"label": "1 рекламное поле", "payload":{"add": 0.07, "imageNameChunk": "one_advertising_field", "descr_mini":[{"name": "Рекламное поле", "value":"297x65 мм"}], "descr_midi":[{"name": "Рекламное поле", "value":"335x65 мм"}], "descr_max":[{"name": "Рекламное поле", "value":"370x65 мм"}]}},
+          {"label": "3 рекламных поля", "payload":{"add": 0.25, "imageNameChunk": "three_advertising_fields", "descr_mini":[{"name": "Рекламное поле (3 шт.)", "value":"297x65 мм"}], "descr_midi":[{"name": "Рекламное поле (3 шт.)", "value":"335x65 мм"}], "descr_max":[{"name": "Рекламное поле (3 шт.)", "value":"370x65 мм"}]}},
+          {"label": "3 рекламных поля + боковые", "payload":{"add": 0.5, "imageNameChunk": "three_advertising_fields_side_fields", "descr_mini":[{"name": "Рекламное поле (3 шт.)", "value":"320x65 мм"}], "descr_midi":[{"name": "Рекламное поле (3 шт.)", "value":"360x65 мм"}], "descr_max":[{"name": "Рекламное поле (3 шт.)", "value":"400x65 мм"}]}}
 
         ]
       },
@@ -342,22 +342,24 @@
         ]
       },
       {
+        "label": "Дизайн календарного блока",
+        "name": "design",
+        "inputType": "select",
+        "options": [
+          {"label": "7 листов 4+4","payload":{"key":"seven", "add": 7}},
+          {"label": "13 листов 4+0", "payload":{"key":"thirteen", "add": 13}}
+        ]
+      },
+      {
         "label": "Ламинация",
         "name": "lamination",
         "inputType": "select",
         "options": [
           {"label": "Без ламинации", "payload":{"key": ""}},
           {"label": "Глянцевая 1+1 (25 мкр)", "payload":{"key": "lamination11"}},
-          {"label": "Матовая 1+1 (25 мкр)", "payload":{"key": "lamination11"}}
-        ]
-      },
-      {
-        "label": "Дизайн календарного блока",
-        "name": "design",
-        "inputType": "select",
-        "options": [
-          {"label": "7 листов 4+4", "payload":{"key":"seven", "add": 7}},
-          {"label": "13 листов 4+0", "payload":{"key":"thirteen", "add": 13}}
+          {"label": "Матовая 1+1 (25 мкр)", "payload":{"key": "lamination11"}},
+          {"label": "Глянцевая 1+0 (25 мкр)", "disabled": true, "payload":{"key": "lamination10"}},
+          {"label": "Матовая 1+0 (25 мкр)", "disabled": true, "payload":{"key": "lamination10"}}
         ]
       },
       {
@@ -365,15 +367,15 @@
         "name": "printRun",
         "inputType": "select",
         "options": [
-          {"label": "10", "payload": {"multiply": 10, "a4_seven": 190, "a3_seven": 255,"a4_seven_lamination11": 11, "a3_seven_lamination11": 15, "a2_seven": 1050,"a1_seven": 1550,"a4_thirteen": 180, "a3_thirteen": 280,"a4_thirteen_lamination11": 9, "a3_thirteen_lamination11": 16, "a2_thirteen": 1150,"a1_thirteen": 0}},
-          {"label": "20", "payload": {"multiply": 20, "a4_seven": 175, "a3_seven": 230,"a4_seven_lamination11": 10, "a3_seven_lamination11": 14, "a2_seven": 980, "a1_seven": 1400,"a4_thirteen": 165, "a3_thirteen": 275,"a4_thirteen_lamination11": 9, "a3_thirteen_lamination11": 16, "a2_thirteen": 1060,"a1_thirteen": 0}},
-          {"label": "30", "payload": {"multiply": 30, "a4_seven": 150, "a3_seven": 220,"a4_seven_lamination11": 10, "a3_seven_lamination11": 13, "a2_seven": 920, "a1_seven": 1370,"a4_thirteen": 160, "a3_thirteen": 270,"a4_thirteen_lamination11": 9, "a3_thirteen_lamination11": 15, "a2_thirteen": 1000,"a1_thirteen": 0}},
-          {"label": "50", "payload": {"multiply": 50, "a4_seven": 135, "a3_seven": 210,"a4_seven_lamination11": 9, "a3_seven_lamination11": 13, "a2_seven": 890,  "a1_seven": 1340,"a4_thirteen": 155,  "a3_thirteen": 240,"a4_thirteen_lamination11": 8, "a3_thirteen_lamination11": 15, "a2_thirteen": 965, "a1_thirteen": 0}},
-          {"label": "100", "payload":{"multiply": 100,"a4_seven": 125, "a3_seven": 190,"a4_seven_lamination11": 9, "a3_seven_lamination11": 13, "a2_seven": 850,  "a1_seven": 1300,"a4_thirteen": 140,  "a3_thirteen": 195,"a4_thirteen_lamination11": 8, "a3_thirteen_lamination11": 14, "a2_thirteen": 920, "a1_thirteen": 0}},
-          {"label": "150", "payload":{"multiply": 150,"a4_seven": 120, "a3_seven": 160,"a4_seven_lamination11": 8, "a3_seven_lamination11": 13, "a2_seven": 0,    "a1_seven": 0   ,"a4_thirteen": 120,  "a3_thirteen": 190,"a4_thirteen_lamination11": 8, "a3_thirteen_lamination11": 14, "a2_thirteen": 0,   "a1_thirteen": 0}},
-          {"label": "200", "payload":{"multiply": 200,"a4_seven": 110, "a3_seven": 150,"a4_seven_lamination11": 7, "a3_seven_lamination11": 13, "a2_seven": 0,    "a1_seven": 0   ,"a4_thirteen": 115,  "a3_thirteen": 185,"a4_thirteen_lamination11": 7, "a3_thirteen_lamination11": 14, "a2_thirteen": 0,   "a1_thirteen": 0}},
-          {"label": "250", "payload":{"multiply": 250,"a4_seven": 105, "a3_seven": 145,"a4_seven_lamination11": 7, "a3_seven_lamination11": 12, "a2_seven": 0,    "a1_seven": 0   ,"a4_thirteen": 110,  "a3_thirteen": 185,"a4_thirteen_lamination11": 7, "a3_thirteen_lamination11": 14, "a2_thirteen": 0,   "a1_thirteen": 0}},
-          {"label": "300", "payload":{"multiply": 300,"a4_seven": 95,  "a3_seven": 140,"a4_seven_lamination11": 7,  "a3_seven_lamination11": 12, "a2_seven": 0,   "a1_seven": 0   ,"a4_thirteen": 105, "a3_thirteen": 185,"a4_thirteen_lamination11": 7, "a3_thirteen_lamination11": 14, "a2_thirteen": 0,   "a1_thirteen": 0}}
+          {"label": "10", "payload": {"multiply": 10, "a4_seven": 190, "a3_seven": 255,"a4_seven_lamination11": 11, "a3_seven_lamination11": 15, "a2_seven": 1050,"a4_thirteen": 180, "a3_thirteen": 280   ,"a4_thirteen_lamination11": 9,"a4_thirteen_lamination10": 5, "a3_thirteen_lamination11": 16, "a3_thirteen_lamination10": 9, "a2_thirteen": 1150, "a1_thirteen": 1600}},
+          {"label": "20", "payload": {"multiply": 20, "a4_seven": 175, "a3_seven": 230,"a4_seven_lamination11": 10, "a3_seven_lamination11": 14, "a2_seven": 980, "a4_thirteen": 165, "a3_thirteen": 275   ,"a4_thirteen_lamination11": 9,"a4_thirteen_lamination10": 5, "a3_thirteen_lamination11": 16, "a3_thirteen_lamination10": 9, "a2_thirteen": 1060, "a1_thirteen": 1450}},
+          {"label": "30", "payload": {"multiply": 30, "a4_seven": 150, "a3_seven": 220,"a4_seven_lamination11": 10, "a3_seven_lamination11": 13, "a2_seven": 920, "a4_thirteen": 160, "a3_thirteen": 270   ,"a4_thirteen_lamination11": 9,"a4_thirteen_lamination10": 4, "a3_thirteen_lamination11": 15, "a3_thirteen_lamination10": 8, "a2_thirteen": 1000, "a1_thirteen": 1400}},
+          {"label": "50", "payload": {"multiply": 50, "a4_seven": 135, "a3_seven": 210,"a4_seven_lamination11": 9, "a3_seven_lamination11": 13, "a2_seven": 890,  "a4_thirteen": 155,  "a3_thirteen": 240  ,"a4_thirteen_lamination11": 8,"a4_thirteen_lamination10": 4, "a3_thirteen_lamination11": 15, "a3_thirteen_lamination10": 8, "a2_thirteen": 965,  "a1_thirteen": 1350}},
+          {"label": "100", "payload":{"multiply": 100,"a4_seven": 125, "a3_seven": 190,"a4_seven_lamination11": 9, "a3_seven_lamination11": 13, "a2_seven": 850,  "a4_thirteen": 140,  "a3_thirteen": 195  ,"a4_thirteen_lamination11": 8,"a4_thirteen_lamination10": 4, "a3_thirteen_lamination11": 14, "a3_thirteen_lamination10": 8, "a2_thirteen": 920,  "a1_thirteen": 1300}},
+          {"label": "150", "payload":{"multiply": 150,"a4_seven": 120, "a3_seven": 160,"a4_seven_lamination11": 8, "a3_seven_lamination11": 13, "a2_seven": 850,  "a4_thirteen": 120,  "a3_thirteen": 190  ,"a4_thirteen_lamination11": 8,"a4_thirteen_lamination10": 4, "a3_thirteen_lamination11": 14, "a3_thirteen_lamination10": 8, "a2_thirteen": 920,  "a1_thirteen": 1300}},
+          {"label": "200", "payload":{"multiply": 200,"a4_seven": 110, "a3_seven": 150,"a4_seven_lamination11": 7, "a3_seven_lamination11": 13, "a2_seven": 850,  "a4_thirteen": 115,  "a3_thirteen": 185  ,"a4_thirteen_lamination11": 7,"a4_thirteen_lamination10": 4, "a3_thirteen_lamination11": 14, "a3_thirteen_lamination10": 7, "a2_thirteen": 920,  "a1_thirteen": 1300}},
+          {"label": "250", "payload":{"multiply": 250,"a4_seven": 105, "a3_seven": 145,"a4_seven_lamination11": 7, "a3_seven_lamination11": 12, "a2_seven": 850,  "a4_thirteen": 110,  "a3_thirteen": 185  ,"a4_thirteen_lamination11": 7,"a4_thirteen_lamination10": 3.5, "a3_thirteen_lamination11": 14, "a3_thirteen_lamination10": 7, "a2_thirteen": 920,"a1_thirteen": 1300}},
+          {"label": "300", "payload":{"multiply": 300,"a4_seven": 95,  "a3_seven": 140,"a4_seven_lamination11": 7,  "a3_seven_lamination11": 12, "a2_seven": 850, "a4_thirteen": 105, "a3_thirteen": 185   ,"a4_thirteen_lamination11": 7,"a4_thirteen_lamination10": 3.5, "a3_thirteen_lamination11": 14, "a3_thirteen_lamination10": 7, "a2_thirteen": 920,"a1_thirteen": 1300}}
         ]
       },
       {
@@ -398,8 +400,8 @@
         "options": [
           {"label": "Прямоугольный Ferrero", "payload":{"key":"ferrero", "price": 0, "imageNameChunk": "rectangular"}},
           {"label": "Прямоугольный O'ZERA", "payload":{"key":"ozera", "price": 0, "imageNameChunk": "rectangular"}},
-          {"label": "Куб", "payload":{"key":"cube", "price": 0, "imageNameChunk": "cube" }},
           {"label": "Домик", "payload":{"key":"house", "price": 0, "imageNameChunk": "house"}},
+          {"label": "Куб", "payload":{"key":"cube", "price": 0, "imageNameChunk": "cube" }},
           {"label": "Звезда", "payload":{"key":"star", "price": 0,  "imageNameChunk": "star"}}
         ]
       },

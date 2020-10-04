@@ -7,7 +7,7 @@ export default class BaseComponent {
     this.el = (el instanceof HTMLElement) ? el : document.querySelector(el);
     if (this.el instanceof HTMLElement) {
       this.on('rendered', (e) => {
-        console.log(`Render ${this.constructor.name}`);
+        // console.log(`Render ${this.constructor.name}`);
       });
     }
 

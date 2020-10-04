@@ -9,8 +9,10 @@ export default class CalcForm extends BaseComponent {
   setState() {
     this.state = [];
     this.image = null;
+    this.descr = [];
     const formData = new FormData(this.el.querySelector('form'));
     const imgSrc = [];
+
     let i = 0;
 
     formData.forEach(((data) => {
@@ -31,7 +33,20 @@ export default class CalcForm extends BaseComponent {
       if (typeof value.payload.imageNameChunk !== 'undefined') {
         imgSrc.push(value.payload.imageNameChunk);
       }
-      //this.state.push(value);
+
+      // State descr
+      if (typeof value.payload.descr !== 'undefined') {
+        this.descr = this.descr.concat(value.payload.descr);
+      }
+
+      if (field.name === 'advFields') {
+        const advKey = `descr_${this.state.size.payload.key}`;
+        // console.log(`descr_${this.state.size.payload.key}`);
+        if (typeof value.payload[advKey] !== 'undefined') {
+          this.descr = this.descr.concat(value.payload[advKey]);
+        }
+      }
+
       this.state[field.name] = value;
       i += 1;
     }));
@@ -39,43 +54,39 @@ export default class CalcForm extends BaseComponent {
     if (imgSrc.length > 0) {
       this.image = `${imgSrc.join('_')}.svg`;
     }
+
+    if (this.descr.length > 0) {
+      console.log(this.descr);
+    }
+  }
+
+  setDescription()
+  {
+    this.descriptionTemplate = require('!!pug-loader!./templates/CalcFormDescription.pug');
+    this.descriptionEl = this.el.querySelector('.js-card-description');
+    this.descriptionEl.innerHTML = this.descriptionTemplate({
+      description: this.descr,
+    });
   }
 
   bindEvents() {
     this.on('change', (e) => {
       e.stopPropagation();
       this.setState();
-
-      if (this.name === 'flipCalendar') {
-        this.el.querySelectorAll('input,select')
-          .forEach((item) => {
-            item.classList.remove('disabled');
-          });
-
-        const laminationEl = this.el.querySelector('select[name=lamination]');
-        const designEl = this.el.querySelector('select[name=design]');
-        if (this.state.size.payload.key === 'a2') {
-          laminationEl.getElementsByTagName('option')[0].selected = 'selected';
-          laminationEl.classList.add('disabled');
-        }
-
-        if (this.state.size.payload.key === 'a1') {
-          laminationEl.getElementsByTagName('option')[0].selected = 'selected';
-          laminationEl.classList.add('disabled');
-          designEl.getElementsByTagName('option')[0].selected = 'selected';
-          designEl.classList.add('disabled');
-        }
-      }
+      this.setDescription();
     });
   }
 
   render() {
+
     this.template = require('!!pug-loader!./templates/CalcForm.pug');
     this.el.innerHTML = this.template({
       form: this,
     });
+
     this.bindEvents();
     super.render();
     this.setState();
+    this.setDescription();
   }
 }

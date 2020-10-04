@@ -1,48 +1,27 @@
 form(id='f_' + form.name)
-  fieldset
-    h2 #{form.label}
-    each f in form.fields
-      .field
-        label(for='l_' + form.name + '_' + f.name)=f.label
-        .input
-          case f.inputType
-            when 'select'
-              select(
-                name=f.name,
-                id='l_' + form.name + '_' + f.name
-              )
-                each o,index in f.options
-                  option(value=index)=o.label
-            when 'checkbox'
-              input(
-                type='checkbox',
-                name=f.name,
-                id='l_' + form.name + '_' + f.name
-              )
+    fieldset
+        h2 #{form.label}
+        each f in form.fields
+            .field
+                label(for='l_' + form.name + '_' + f.name)=f.label
+                .input
+                    case f.inputType
+                        when 'select'
+                            select(
+                                name=f.name,
+                                id='l_' + form.name + '_' + f.name
+                            )
+                                each o,index in f.options
+                                    option(value=index disabled=o.disabled)=o.label
+                        when 'checkbox'
+                            input(
+                                type='checkbox',
+                                name=f.name,
+                                id='l_' + form.name + '_' + f.name
+                            )
 
-  .calc__card
-      .calc__card__image
-        img.js-form-image(src=require('../assets/svg/' + form.name + '/' + form.defaultImage))
-      .calc__card__description
-        ul.calc__card__params
-          li.calc__card__param
-            | Постер
-            br
-            | 297x210 мм
-          li.calc__card__param
-            | Календарный блок
-            br
-            | 297х145 мм
-          li.calc__card__param
-            | Календарный блок
-            br
-            |297х145 мм
-          li.calc__card__param
-            | Календарный блок
-            br
-            | 297х145 мм
-          li.calc__card__param
-            | Нижнее рекламное
-            br
-            | поле 297х65 мм
+    .calc__card
+        .calc__card__image
+            img.js-form-image(src=require('../assets/svg/' + form.name + '/' + form.defaultImage))
+        .js-card-description.calc__card__description
 
