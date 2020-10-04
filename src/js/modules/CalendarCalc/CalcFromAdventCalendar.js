@@ -26,6 +26,7 @@ export default class CalcFormAdventCalendar extends CalcForm {
       }
 
       this.setState();
+      this.setDescription();
     });
   }
 }

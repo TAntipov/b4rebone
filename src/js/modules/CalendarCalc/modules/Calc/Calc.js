@@ -13,10 +13,10 @@ export default class Calc {
   }
 
   calculate() {
-    this.unitPrice = this.baseUnitPrice
+    this.unitPrice = (this.baseUnitPrice
       + this.lamination
       + this.design
-      + this.advFields;
+      + this.advFields) || 0;
 
     // Calculate
     console.log(

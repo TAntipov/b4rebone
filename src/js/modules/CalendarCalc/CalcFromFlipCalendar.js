@@ -43,6 +43,7 @@ export default class CalcFormFlipCalendar extends CalcForm {
         designEl.classList.add('disabled');
       }
       this.setState();
+      this.setDescription();
     });
   }
 }

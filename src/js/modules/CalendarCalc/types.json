@@ -14,7 +14,7 @@
           {"label": "Мини (297х210 мм)", "payload":{"key": "mini", "price": 200, "lamination10": 7, "lamination11": 14, "imageNameChunk": "mini", "descr":[{"name": "Постер", "value":"297x210 мм"},{"name": "Календарный блок","value": "297x145 мм"}]}},
           {"label": "Миди (335х250 мм)", "payload":{"key": "midi", "price": 220, "lamination10": 13, "lamination11": 26,"imageNameChunk": "midi", "descr":[{"name": "Постер", "value":"335x250 мм"},{"name": "Календарный блок","value": "335x160 мм"}] }},
           {"label": "Макси (370х290 мм)","payload":{"key": "max", "price": 250, "lamination10": 16, "lamination11": 32,"imageNameChunk": "max", "descr":[{"name": "Постер", "value":"370x290 мм"},{"name": "Календарный блок","value": "370x170 мм"}]}},
-          {"label": "индивидуальный размер", "payload":{"key": "max", "price": 250, "lamination10": 16, "lamination11": 32,"imageNameChunk": "max"}}
+          {"label": "индивидуальный размер", "payload":{"key": "custom", "price": 250, "lamination10": 16, "lamination11": 32,"imageNameChunk": "max"}}
         ]
       },
       {
@@ -88,8 +88,8 @@
         "name": "size",
         "inputType": "select",
         "options": [
-          {"label": "Размер 297х210 мм", "payload":{"key": "mini","price": 200, "lamination10": 7, "lamination11": 14, "imageNameChunk": "mini"}},
-          {"label": "Размер 335х250 мм", "payload":{"key": "midi","price": 220, "lamination10": 13, "lamination11": 26, "imageNameChunk": "midi" }}
+          {"label": "Размер 297х210 мм", "payload":{"key": "mini","price": 200, "lamination10": 7, "lamination11": 14, "imageNameChunk": "mini", "descr":[{"name": "Постер", "value":"297x210 мм"},{"name": "Календарный блок","value": "297x207 мм"}]}},
+          {"label": "Размер 335х250 мм", "payload":{"key": "midi","price": 220, "lamination10": 13, "lamination11": 26, "imageNameChunk": "midi", "descr":[{"name": "Постер", "value":"335x250 мм"},{"name": "Календарный блок","value": "335x235 мм"}] }}
         ]
       },
       {
@@ -110,8 +110,8 @@
         "inputType": "select",
         "options": [
           {"label": "Без полей", "payload":{"add": 0}},
-          {"label": "1 рекламное поле", "payload":{"add": 0.1, "imageNameChunk": "one_advertising_field"}},
-          {"label": "1 рекламное поле + боковые", "payload":{"add": 0.2, "imageNameChunk": "one_advertising_field_side_fields"}}
+          {"label": "1 рекламное поле", "payload":{"add": 0.1, "imageNameChunk": "one_advertising_field", "descr_mini":[{"name": "Рекламное поле", "value":"297x65 мм"}], "descr_midi":[{"name": "Рекламное поле", "value":"335x65 мм"}]}},
+          {"label": "1 рекламное поле + боковые", "payload":{"add": 0.2, "imageNameChunk": "one_advertising_field_side_fields", "descr_mini":[{"name": "Рекламное поле", "value":"320x65 мм"}], "descr_midi":[{"name": "Рекламное поле", "value":"360x65 мм"}]}}
         ]
       },
       {
@@ -161,10 +161,10 @@
         "name": "size",
         "inputType": "select",
         "options": [
-          {"label": "⅓ А4", "payload":{"key": "a4", "price": 0, "lamination10": 8, "lamination11": 8,"imageNameChunk": "a4"}},
-          {"label": "⅓ А4+", "payload":{"key": "a5", "price": 0, "lamination10": 8, "lamination11": 8 ,"imageNameChunk": "a4+" }},
-          {"label": "А5", "payload":{"key": "a5","price": 0, "lamination10": 8, "lamination11": 8, "imageNameChunk": "a5"}},
-          {"label": "индивидуальный размер", "payload":{"key": "a5", "lamination10": 8, "lamination11": 8, "price": 0, "imageNameChunk": "a5"}}
+          {"label": "⅓ А4", "payload":{"key": "a4", "price": 0, "lamination10": 8, "lamination11": 8,"imageNameChunk": "a4", "descr":[{"name": "Календарный блок", "value":"200х95 мм"},{"name": "Подложка","value": "200х100 мм"}]}},
+          {"label": "⅓ А4+", "payload":{"key": "a5", "price": 0, "lamination10": 8, "lamination11": 8 ,"imageNameChunk": "a4+", "descr":[{"name": "Календарный блок", "value":"210х130 мм"},{"name": "Подложка","value": "210х135 мм"}]}},
+          {"label": "А5", "payload":{"key": "a5","price": 0, "lamination10": 8, "lamination11": 8, "imageNameChunk": "a5", "descr":[{"name": "Календарный блок", "value":"210х150 мм"},{"name": "Подложка","value": "210х155 мм"}]}},
+          {"label": "индивидуальный размер", "payload":{"key": "custom", "lamination10": 8, "lamination11": 8, "price": 0, "imageNameChunk": "a5"}}
         ]
       },
       {
@@ -183,7 +183,7 @@
         "inputType": "select",
         "options": [
           {"label": "Без полей", "payload":{"add": 0}},
-          {"label": "1 рекламное поле", "payload":{"add": 0.15, "imageNameChunk": "one_advertising_field"}}
+          {"label": "1 рекламное поле", "payload":{"add": 0.15, "imageNameChunk": "one_advertising_field", "descr_a4":[{"name": "Рекламное поле", "value":"200х25 мм"}], "descr_a5":[{"name": "Рекламное поле", "value":"210х30 мм"}]}}
         ]
       },
       {
@@ -232,9 +232,9 @@
         "name": "size",
         "inputType": "select",
         "options": [
-          {"label": "1/3 А4", "payload":{"key":"a4", "price": 0, "lamination10": 10, "imageNameChunk": "a4_1_3"}},
-          {"label": "вертикальный 120х170 мм", "payload":{"key":"a4", "price": 0, "lamination10": 10, "imageNameChunk": "vertical"}},
-          {"label": "размер на заказ", "payload":{"key":"a4", "price": 0, "lamination10": 10, "imageNameChunk": "vertical"}}
+          {"label": "⅓ А4", "payload":{"key":"a4", "price": 0, "lamination10": 10, "imageNameChunk": "a4_1_3", "descr":[{"name": "Стороны", "value":"210х100 мм"}]}},
+          {"label": "вертикальный 120х170 мм", "payload":{"key":"a4", "price": 0, "lamination10": 10, "imageNameChunk": "vertical", "descr":[{"name": "Стороны", "value":"120х170 мм"}]}},
+          {"label": "размер на заказ", "payload":{"key":"custom", "price": 0, "lamination10": 10, "imageNameChunk": "vertical"}}
 
         ]
       },
@@ -284,8 +284,8 @@
         "name": "size",
         "inputType": "select",
         "options": [
-          {"label": "70х100 мм", "payload":{"key": "mini","price": 0, "imageNameChunk": "pocket"}},
-          {"label": "размер на заказ", "payload":{"key": "mini","price": 0, "imageNameChunk": "pocket"}}
+          {"label": "70х100 мм", "payload":{"key": "mini","price": 0, "imageNameChunk": "pocket", "descr":[{"name": "Календарь", "value":"70х100 мм"}]}},
+          {"label": "размер на заказ", "payload":{"key": "custom","price": 0, "imageNameChunk": "pocket"}}
 
         ]
       },
@@ -335,10 +335,10 @@
         "name": "size",
         "inputType": "select",
         "options": [
-          {"label": "А4 (210х297 мм)", "payload":{"key": "a4", "price": 200, "imageNameChunk": "a4"}},
-          {"label": "A3 (420х297 мм)", "payload":{"key": "a3", "price": 350, "imageNameChunk": "a3"}},
-          {"label": "A2 (594х420 мм)", "payload":{"key": "a2", "price": 500, "imageNameChunk": "a2"}},
-          {"label": "A1 (840x594 мм)", "payload":{"key": "a1", "price": 500, "imageNameChunk": "a1"}}
+          {"label": "А4 (210х297 мм)", "payload":{"key": "a4", "price": 200, "imageNameChunk": "a4", "descr":[{"name": "Календарный блок", "value":"297×210 мм"}]}},
+          {"label": "A3 (420х297 мм)", "payload":{"key": "a3", "price": 350, "imageNameChunk": "a3", "descr":[{"name": "Календарный блок", "value":"420x297 мм"}]}},
+          {"label": "A2 (594х420 мм)", "payload":{"key": "a2", "price": 500, "imageNameChunk": "a2", "descr":[{"name": "Календарный блок", "value":"594×420 мм"}]}},
+          {"label": "A1 (840x594 мм)", "payload":{"key": "a1", "price": 500, "imageNameChunk": "a1", "descr":[{"name": "Календарный блок", "value":"840×594 мм"}]}}
         ]
       },
       {
@@ -398,11 +398,11 @@
         "name": "size",
         "inputType": "select",
         "options": [
-          {"label": "Прямоугольный Ferrero", "payload":{"key":"ferrero", "price": 0, "imageNameChunk": "rectangular"}},
-          {"label": "Прямоугольный O'ZERA", "payload":{"key":"ozera", "price": 0, "imageNameChunk": "rectangular"}},
-          {"label": "Домик", "payload":{"key":"house", "price": 0, "imageNameChunk": "house"}},
-          {"label": "Куб", "payload":{"key":"cube", "price": 0, "imageNameChunk": "cube" }},
-          {"label": "Звезда", "payload":{"key":"star", "price": 0,  "imageNameChunk": "star"}}
+          {"label": "Прямоугольный Ferrero", "payload":{"key":"ferrero", "price": 0, "imageNameChunk": "rectangular", "descr":[{"name": "Размер", "value":"305х208х35 мм"},{"name": "Конфеты","value": "24 шт."}]}},
+          {"label": "Прямоугольный O'ZERA", "payload":{"key":"ozera", "price": 0, "imageNameChunk": "rectangular", "descr":[{"name": "Размер", "value":"225х165х10 мм"},{"name": "Конфеты","value": "24 шт."}]}},
+          {"label": "Домик", "payload":{"key":"house", "price": 0, "imageNameChunk": "house", "descr":[{"name": "Размер", "value":"100х100х210 мм"},{"name": "Конфеты","value": "24 шт."}]}},
+          {"label": "Куб", "payload":{"key":"cube", "price": 0, "imageNameChunk": "cube", "descr":[{"name": "Размер", "value":"108х108х108 мм"},{"name": "Конфеты","value": "24 шт."}] }},
+          {"label": "Звезда", "payload":{"key":"star", "price": 0,  "imageNameChunk": "star", "descr":[{"name": "Размер", "value":"320х300х21 мм"},{"name": "Конфеты","value": "24 шт."}]}}
         ]
       },
       {
