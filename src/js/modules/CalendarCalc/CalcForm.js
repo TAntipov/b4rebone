@@ -6,6 +6,20 @@ export default class CalcForm extends BaseComponent {
     Object.assign(this, options);
   }
 
+  stateToString() {
+    let text = `${this.label}\n---------------------\n`;
+    Object.keys(this.state)
+      .forEach((key, index) => {
+        let { value } = this.state[key];
+        const field = this.fields[index];
+        if (field.inputType === 'select') {
+          value = field.options[value].label;
+        }
+        text += `${this.state[key].label}: ${value}\n`;
+      });
+    return text;
+  }
+
   setState() {
     this.state = [];
     this.image = null;
@@ -54,14 +68,9 @@ export default class CalcForm extends BaseComponent {
     if (imgSrc.length > 0) {
       this.image = `${imgSrc.join('_')}.svg`;
     }
-
-    if (this.descr.length > 0) {
-      console.log(this.descr);
-    }
   }
 
-  setDescription()
-  {
+  setDescription() {
     this.descriptionTemplate = require('!!pug-loader!./templates/CalcFormDescription.pug');
     this.descriptionEl = this.el.querySelector('.js-card-description');
     this.descriptionEl.innerHTML = this.descriptionTemplate({

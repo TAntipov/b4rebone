@@ -1,30 +1,31 @@
 .calc
-    .calc__tabs
-        h3.calc__header
-            | Расчитайте стоимость печати
-        ul.calc__tabs__list
-            each t in types
-                li.calc__tab
-                    a.calc__tab__link.js-tab-link(href="#")
-                        .calc__tab__icon
-                            img(src=require("../assets/svg/" + t.name + "/" + t.icon))
-                        .calc__tab__description #{t.label}
-                            .calc__tab__minprice
-                                | от #{t.minPrice} р.
-    .calc__content
-        .calc__forms.js-forms
-        .calc__checkout
-            .calc__totals
-                .calc__totals__cost
-                    span.js-total-cost 123 000
-                    span.calc__totals__cost-currency Р
-                .calc__totals__unit-price
-                    span.js-unit-price 1 800
-                    span.calc__totals__unit-currency Р за шт.
-                form.calc__checkout__form
-                    input(type='text',placeholder='Имя').calc__input.calc__checkout__name
-                    input(type='text',placeholder='Телефон').calc__input.calc__checkout__phone
-                    input(type='button', value='Заказать').calc__checkout__button
+  .calc__tabs
+    h3.calc__header
+      | Расчитайте стоимость печати
+    ul.calc__tabs__list
+      each t in types
+        li.calc__tab
+          a.calc__tab__link.js-tab-link(href="#")
+            .calc__tab__icon
+              img(src=require("../assets/svg/" + t.name + "/" + t.icon))
+            .calc__tab__description #{t.label}
+              .calc__tab__minprice
+                | от #{t.minPrice} р.
+  .calc__content
+    .calc__forms.js-forms
+    .calc__checkout
+      .calc__totals
+        .calc__totals__cost
+          span.js-total-cost 123 000
+          span.calc__totals__cost-currency Р
+        .calc__totals__unit-price
+          span.js-unit-price 1 800
+          span.calc__totals__unit-currency Р за шт.
+        form.calc__checkout__form.js-calendar-calc
+          input(type='text',placeholder='Имя', name='name', required='required').calc__input.calc__checkout__name
+          input(type='text',placeholder='Телефон', name='phone', required='required').calc__input.calc__checkout__phone
+          input(type='hidden',name='text')
+          input(type='submit', value='Заказать').js-send-calc-form.calc__checkout__button
 
 
 

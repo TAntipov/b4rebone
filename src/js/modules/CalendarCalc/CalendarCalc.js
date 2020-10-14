@@ -13,10 +13,6 @@ export default class CalendarCalc extends BaseComponent {
 
     this.unitPrice = 0;
     this.totalCost = 0;
-    this.priceFormatter = new Intl.NumberFormat('ru-RU', {
-      // style: 'currency',
-      currency: 'RUB',
-    });
 
     this.unitPriceSelector = '.js-unit-price';
     this.totalCostSelector = '.js-total-cost';
@@ -24,6 +20,11 @@ export default class CalendarCalc extends BaseComponent {
     this.tabLinkSelector = '.js-tab-link';
     this.formContainerClass = 'calc__forms__form';
     this.activeTabLinkClass = 'calc__tab__link--active';
+
+    this.numberFormatter = new Intl.NumberFormat('ru-RU', {
+      // style: 'currency',
+      // currency: 'RUB',
+    });
   }
 
   calculate() {
@@ -31,8 +32,20 @@ export default class CalendarCalc extends BaseComponent {
 
     if (Calculator instanceof Calc) {
       const result = Calculator.calculate();
-      this.unitPriceContainer.innerHTML = result.unitPrice;
-      this.totalCostContainer.innerHTML = result.totalCost;
+      this.unitPriceContainer.innerHTML = this.numberFormatter.format(result.unitPrice);
+      this.totalCostContainer.innerHTML = this.numberFormatter.format(result.totalCost);
+
+      let text = this.activeForm.stateToString();
+      text += '-----------------------------\n';
+      text += `Цена за штуку: ${this.numberFormatter.format(result.unitPrice)} Р.\n`;
+      text += `Общая стоимость: ${this.numberFormatter.format(result.totalCost)} Р.\n`;
+
+      const messageFormTextField = document.querySelector('.js-calendar-calc input[name=text]');
+      messageFormTextField.value = text;
+
+      console.clear();
+      console.log(text);
+
     }
   }
 
@@ -57,6 +70,34 @@ export default class CalendarCalc extends BaseComponent {
         return false;
       });
     });
+
+    // document.querySelector('.js-send-calc-form')
+    //   .addEventListener('click', (e) => {
+    //     e.preventDefault();
+    //     const form = e.target.closest('form');
+    //     const errors = [];
+    //
+    //     // Check name
+    //     form.name.classList.remove('calc__input--error');
+    //     if (!form.name.value.match(/[\S]{2,}/)) {
+    //       form.name.classList.add('calc__input--error');
+    //       errors.push('name');
+    //     }
+    //
+    //     // Check phone
+    //     form.phone.classList.remove('calc__input--error');
+    //     if (!form.phone.value.match(/\+7\([0-9]{2,3}\) [0-9]{3} [0-9]{2,4}/g)) {
+    //       form.phone.classList.add('calc__input--error');
+    //       errors.push('phone');
+    //     }
+    //
+    //     if (errors.length) {
+    //       console.log(errors);
+    //       return false;
+    //     }
+    //
+    //     form.submit();
+    //   });
   }
 
   mountForms() {
@@ -67,17 +108,14 @@ export default class CalendarCalc extends BaseComponent {
       this.el.querySelector(this.formsContainerSelector)
         .appendChild(element);
 
-      const FormClass = this.getFormClass(this.types[index].name);
+      const FormClass = CalendarCalc.getFormClass(this.types[index].name);
       const form = new FormClass(element, this.types[index]);
-
-      form.render();
       this.forms.push(form);
+      form.render();
     });
-
-    //this.setActiveForm(this.forms[0]);
   }
 
-  getFormClass(name) {
+  static getFormClass(name) {
     switch (name) {
       case 'flipCalendar':
         return CalcFormFlipCalendar;
@@ -94,7 +132,7 @@ export default class CalendarCalc extends BaseComponent {
     }
     this.activeForm = form;
     this.activeForm.show();
-    this.calculate();
+    this.activeForm.trigger('change');
   }
 
   render() {

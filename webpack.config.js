@@ -355,6 +355,18 @@ module.exports = (env, argv) => {
     ],
   };
 
+  webpackConfig.plugins.push(
+    // Clean build dir
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: [
+        Path.resolve(__dirname, DIR_BUILD, '*'),
+        `!${Path.resolve(__dirname, DIR_BUILD, '.gitkeep')}`, // keep file
+      ],
+      verbose: true,
+      dry: false,
+    }),
+  );
+
   if (argv.mode === MODE_PRODUCTION) {
     webpackConfig.optimization.minimizer = [
       new TerserPlugin({
@@ -368,17 +380,12 @@ module.exports = (env, argv) => {
     ];
   }
 
-  webpackConfig.plugins.push(
-    // Clean build dir
-    new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: [
-        Path.resolve(__dirname, DIR_BUILD, '*'),
-        `!${Path.resolve(__dirname, DIR_BUILD, '.gitkeep')}`, // keep file
-      ],
-      verbose: true,
-      dry: false,
-    }),
-  );
+  // if (argv.mode === MODE_PRODUCTION) {
+  //   webpackConfig.plugins.push(new Webpack.NormalModuleReplacementPlugin(
+  //     /assets\//,
+  //     'http://cdn.hotelpress.ru/assets/',
+  //   ));
+  // }
 
   return webpackConfig;
 };
