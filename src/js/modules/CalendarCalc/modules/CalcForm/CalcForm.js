@@ -1,4 +1,4 @@
-import BaseComponent from '../BaseComponent';
+import BaseComponent from '../../../BaseComponent';
 
 export default class CalcForm extends BaseComponent {
   constructor(el, options = {}) {

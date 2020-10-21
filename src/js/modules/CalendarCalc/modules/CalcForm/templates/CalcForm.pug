@@ -19,9 +19,10 @@ form(id='f_' + form.name)
                 name=f.name,
                 id='l_' + form.name + '_' + f.name
               )
+              label(for='l_' + form.name + '_' + f.name) Да
 
   .calc__card
     .calc__card__image
-      img.js-form-image(src=require('../assets/svg/' + form.name + '/' + form.defaultImage))
+      img.js-form-image(src=require('../../../assets/svg/' + form.name + '/' + form.defaultImage))
     .js-card-description.calc__card__description
 

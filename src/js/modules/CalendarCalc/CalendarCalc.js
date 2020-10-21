@@ -1,9 +1,10 @@
 import BaseComponent from '../BaseComponent';
-import CalcForm from './CalcForm';
-import CalcFactory from './modules/CalcFactory';
+import CalcForm from './modules/CalcForm/CalcForm';
+import CalcFactory from './modules/Calc/CalcFactory';
 import Calc from './modules/Calc/Calc';
-import CalcFormFlipCalendar from './CalcFromFlipCalendar';
-import CalcFormAdventCalendar from './CalcFromAdventCalendar';
+import CalcFormFlipCalendar from './modules/CalcForm/CalcFromFlipCalendar';
+import CalcFormAdventCalendar from './modules/CalcForm/CalcFromAdventCalendar';
+import CheckoutForm from './modules/CheckoutForm/CheckoutForm';
 
 export default class CalendarCalc extends BaseComponent {
   constructor(el) {
@@ -14,10 +15,14 @@ export default class CalendarCalc extends BaseComponent {
     this.unitPrice = 0;
     this.totalCost = 0;
 
+    this.totalsSelector = '.js-calc-totals';
+    this.priceRequestSelector = '.js-calc-price-request';
     this.unitPriceSelector = '.js-unit-price';
     this.totalCostSelector = '.js-total-cost';
     this.formsContainerSelector = '.js-forms';
     this.tabLinkSelector = '.js-tab-link';
+    this.userFormContainerSelector = '.js-calendar-user-form';
+
     this.formContainerClass = 'calc__forms__form';
     this.activeTabLinkClass = 'calc__tab__link--active';
 
@@ -32,9 +37,18 @@ export default class CalendarCalc extends BaseComponent {
 
     if (Calculator instanceof Calc) {
       const result = Calculator.calculate();
-      this.unitPriceContainer.innerHTML = this.numberFormatter.format(result.unitPrice);
-      this.totalCostContainer.innerHTML = this.numberFormatter.format(result.totalCost);
+      this.priceRequestContainer.style.display = 'none';
 
+      if (result.unitPrice > 0) {
+        this.toalsContainer.style.display = 'block';
+        this.unitPriceContainer.innerHTML = this.numberFormatter.format(result.unitPrice);
+        this.totalCostContainer.innerHTML = this.numberFormatter.format(result.totalCost);
+      } else {
+        this.priceRequestContainer.style.display = 'block';
+        this.toalsContainer.style.display = 'none';
+      }
+
+      this.checkoutForm.setState(CheckoutForm.STATE_INPUT);
       let text = this.activeForm.stateToString();
       text += '-----------------------------\n';
       text += `Цена за штуку: ${this.numberFormatter.format(result.unitPrice)} Р.\n`;
@@ -45,7 +59,6 @@ export default class CalendarCalc extends BaseComponent {
 
       console.clear();
       console.log(text);
-
     }
   }
 
@@ -70,37 +83,9 @@ export default class CalendarCalc extends BaseComponent {
         return false;
       });
     });
-
-    // document.querySelector('.js-send-calc-form')
-    //   .addEventListener('click', (e) => {
-    //     e.preventDefault();
-    //     const form = e.target.closest('form');
-    //     const errors = [];
-    //
-    //     // Check name
-    //     form.name.classList.remove('calc__input--error');
-    //     if (!form.name.value.match(/[\S]{2,}/)) {
-    //       form.name.classList.add('calc__input--error');
-    //       errors.push('name');
-    //     }
-    //
-    //     // Check phone
-    //     form.phone.classList.remove('calc__input--error');
-    //     if (!form.phone.value.match(/\+7\([0-9]{2,3}\) [0-9]{3} [0-9]{2,4}/g)) {
-    //       form.phone.classList.add('calc__input--error');
-    //       errors.push('phone');
-    //     }
-    //
-    //     if (errors.length) {
-    //       console.log(errors);
-    //       return false;
-    //     }
-    //
-    //     form.submit();
-    //   });
   }
 
-  mountForms() {
+  mountCalcForms() {
     this.types.forEach((type, index) => {
       const element = document.createElement('div');
       element.classList.add(this.formContainerClass);
@@ -113,6 +98,11 @@ export default class CalendarCalc extends BaseComponent {
       this.forms.push(form);
       form.render();
     });
+  }
+
+  mountCheckoutForm() {
+    this.checkoutForm = new CheckoutForm(this.userFormContainerSelector);
+    this.checkoutForm.render();
   }
 
   static getFormClass(name) {
@@ -137,15 +127,20 @@ export default class CalendarCalc extends BaseComponent {
 
   render() {
     this.template = require('!!pug-loader!./templates/CalendarCalc.pug');
-
     this.el.innerHTML = this.template({
       types: this.types,
     });
+
     super.render();
-    this.mountForms();
+    this.mountCalcForms();
+    this.mountCheckoutForm();
+
     this.tabs = this.el.querySelectorAll(this.tabLinkSelector);
+    this.toalsContainer = this.el.querySelector(this.totalsSelector);
     this.unitPriceContainer = this.el.querySelector(this.unitPriceSelector);
     this.totalCostContainer = this.el.querySelector(this.totalCostSelector);
+    this.priceRequestContainer = this.el.querySelector(this.priceRequestSelector);
+
     this.bindEvents();
     this.tabs[0].click();
   }

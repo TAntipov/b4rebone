@@ -31,6 +31,12 @@ const getCacheLoader = (path) => ({
 });
 
 module.exports = (env, argv) => {
+
+  let PUBLIC_PATH_PREFIX = '';
+  if (argv.mode === MODE_PRODUCTION) {
+    PUBLIC_PATH_PREFIX = 'https://cdn.hotelpress.ru/';
+  }
+
   const ExtractCSS = new ExtractTextPlugin({
     filename: '../css/styles.css',
     publicPath: '/css',
@@ -42,7 +48,7 @@ module.exports = (env, argv) => {
 
   const fileLoaderOptions = {
     outputPath: '../assets/',
-    publicPath: 'assets/',
+    publicPath: `${PUBLIC_PATH_PREFIX}assets/`,
     regExp: /assets\/([\s\S]+)/,
     esModule: false,
     name: '[1]',
@@ -50,7 +56,7 @@ module.exports = (env, argv) => {
 
   const cssfileLoaderOptions = {
     outputPath: '../assets/',
-    publicPath: '../assets/',
+    publicPath: `${PUBLIC_PATH_PREFIX}../assets/`,
     regExp: /assets\/([\s\S]+)/,
     esModule: false,
     name: '[1]',
@@ -112,13 +118,10 @@ module.exports = (env, argv) => {
         // Expose jQuery
         {
           test: require.resolve('jquery'),
-          use: [{
-            loader: 'expose-loader',
-            options: 'jQuery',
-          }, {
-            loader: 'expose-loader',
-            options: '$',
-          }],
+          loader: 'expose-loader',
+          options: {
+            exposes: ['$', 'jQuery'],
+          },
         },
 
         // Babel
@@ -139,6 +142,7 @@ module.exports = (env, argv) => {
                   // target: 'es2015',
                   // target in .browserslistrc
                 }]],
+                plugins: ['@babel/plugin-proposal-class-properties'],
               },
             }],
         },
@@ -177,7 +181,7 @@ module.exports = (env, argv) => {
               options: {
                 emitFile: false,
                 esModule: false,
-                publicPath: 'assets/svg/',
+                publicPath: `${PUBLIC_PATH_PREFIX}assets/svg`,
                 name: 'sprite.svg#icon-[name]',
               },
             },
@@ -209,7 +213,7 @@ module.exports = (env, argv) => {
             {
               loader: 'file-loader',
               options: Object.assign(fileLoaderOptions, {
-                publicPath: 'assets/',
+                publicPath: `${PUBLIC_PATH_PREFIX}assets/`,
               }),
             },
             {
@@ -350,6 +354,16 @@ module.exports = (env, argv) => {
         host: 'localhost',
         port: 8888, // remove port option to avoid socket.io.js 404 (Not Found)
         server: { baseDir: Path.resolve(DIR_BUILD) },
+        middleware: [
+          {
+            route: '/client_account/feedback.json',
+            handle: (req, res, next) => {
+              res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+              res.write('{"status": "ok", "notice": "Сообщение успешно отправлено."}');
+              res.end();
+              next();
+            },
+          }],
       }),
 
     ],
@@ -378,6 +392,10 @@ module.exports = (env, argv) => {
         sourceMap: false,
       }),
     ];
+
+    webpackConfig.externals = {
+      jquery: 'jQuery',
+    };
   }
 
   // if (argv.mode === MODE_PRODUCTION) {

@@ -1,8 +1,8 @@
-import CalcSpring from './Calc/CalcSpring';
-import CalcHouse from './Calc/CalcHouse';
-import CalcPocket from './Calc/CalcPocket';
-import CalcFlip from './Calc/CalcFlip';
-import CalcAdvent from './Calc/CalcAdvent';
+import CalcSpring from './CalcSpring';
+import CalcHouse from './CalcHouse';
+import CalcPocket from './CalcPocket';
+import CalcFlip from './CalcFlip';
+import CalcAdvent from './CalcAdvent';
 
 export default class CalcFactory {
   static createCalc(form) {
