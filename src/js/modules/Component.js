@@ -1,6 +1,6 @@
-export default class BaseComponent {
+export default class Component {
   constructor(el) {
-    if (new.target === BaseComponent) {
+    if (new.target === Component) {
       throw new TypeError('Cannot construct BaseComponent instances directly');
     }
 
@@ -11,7 +11,7 @@ export default class BaseComponent {
       });
     }
 
-    if (new.target === BaseComponent) {
+    if (new.target === Component) {
       throw new TypeError('Cannot construct BaseComponent instances directly');
     }
   }

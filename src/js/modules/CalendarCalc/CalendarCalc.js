@@ -1,4 +1,4 @@
-import BaseComponent from '../BaseComponent';
+import Component from '../Component';
 import CalcForm from './modules/CalcForm/CalcForm';
 import CalcFactory from './modules/Calc/CalcFactory';
 import Calc from './modules/Calc/Calc';
@@ -6,10 +6,16 @@ import CalcFormFlipCalendar from './modules/CalcForm/CalcFromFlipCalendar';
 import CalcFormAdventCalendar from './modules/CalcForm/CalcFromAdventCalendar';
 import CheckoutForm from './modules/CheckoutForm/CheckoutForm';
 
-export default class CalendarCalc extends BaseComponent {
-  constructor(el) {
-    super(el);
-    this.types = require('./types.json');
+export default class CalendarCalc extends Component {
+  constructor(options) {
+
+    if (typeof options.el === 'undefined'
+      || typeof options.data === 'undefined') {
+      throw new Error('Invalid calculator options');
+    }
+
+    super(options.el);
+    this.types = options.data;
     this.forms = [];
 
     this.unitPrice = 0;
@@ -57,8 +63,8 @@ export default class CalendarCalc extends BaseComponent {
       const messageFormTextField = document.querySelector('.js-calendar-calc input[name=text]');
       messageFormTextField.value = text;
 
-      console.clear();
-      console.log(text);
+      // console.clear();
+      // console.log(text);
     }
   }
 
@@ -142,6 +148,6 @@ export default class CalendarCalc extends BaseComponent {
     this.priceRequestContainer = this.el.querySelector(this.priceRequestSelector);
 
     this.bindEvents();
-    this.tabs[0].click();
+    // this.tabs[0].click();
   }
 }

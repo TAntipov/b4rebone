@@ -1,6 +1,6 @@
-import BaseComponent from '../../../BaseComponent';
+import Component from '../../../Component';
 
-export default class CalcForm extends BaseComponent {
+export default class CalcForm extends Component {
   constructor(el, options = {}) {
     super(el);
     Object.assign(this, options);

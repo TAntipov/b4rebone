@@ -3,9 +3,15 @@
   "env": {
     "browser": true
   },
+
+  "globals": {
+    "__WEBPACK__": "readonly"
+  },
+
   "rules": {
     "import/no-webpack-loader-syntax": "off",
     "import/no-unresolved": "off",
-    "global-require": "off"
+    "global-require": "off",
+    "no-underscore-dangle": "off"
   }
 }

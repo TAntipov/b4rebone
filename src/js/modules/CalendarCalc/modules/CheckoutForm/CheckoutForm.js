@@ -1,6 +1,6 @@
-import BaseComponent from '../../../BaseComponent';
+import Component from '../../../Component';
 
-export default class CheckoutForm extends BaseComponent {
+export default class CheckoutForm extends Component {
 
   static STATE_INPUT = 'input';
   static STATE_SUCCESS = 'success';
@@ -64,17 +64,17 @@ export default class CheckoutForm extends BaseComponent {
     this.form.addEventListener('submit', (e) => {
       e.preventDefault();
       if (this.validate() === true) {
-
-        $.post('/client_account/feedback.json', {
+        $.post(`/client_account/feedback.json`, {
           feedback: {
             name: this.form.name.value,
             phone: this.form.phone.value,
-            from: 'info@hotelpress.ru',
+            from: this.form.email.value,
             subject: 'Калькулятор календарей',
             content: this.form.text.value
           }
         }).done((data) => {
           console.log(data);
+          console.log(this.form.text.value);
           if (data.status === 'ok') {
             this.setState(CheckoutForm.STATE_SUCCESS);
           }

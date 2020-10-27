@@ -1,5 +1,6 @@
 const Webpack = require('webpack');
 const Path = require('path');
+const Fs = require('fs');
 const TerserPlugin = require('terser-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -34,8 +35,14 @@ module.exports = (env, argv) => {
 
   let PUBLIC_PATH_PREFIX = '';
   if (argv.mode === MODE_PRODUCTION) {
+    // npm run build
+    // && sed -i 's/src=`assets/src=\`https:\/\/cdn.hotelpress.ru\/assets/g' build/js/index.js
     PUBLIC_PATH_PREFIX = 'https://cdn.hotelpress.ru/';
   }
+
+  const __WEBPACK__ = {
+    PUBLIC_PATH_PREFIX,
+  };
 
   const ExtractCSS = new ExtractTextPlugin({
     filename: '../css/styles.css',
@@ -339,6 +346,11 @@ module.exports = (env, argv) => {
         },
       }),
 
+      // Pass variables to script
+      new Webpack.DefinePlugin({
+        __WEBPACK__: JSON.stringify(__WEBPACK__),
+      }),
+
       // Provide jQuery
       new Webpack.ProvidePlugin({
         $: 'jquery',
@@ -360,6 +372,15 @@ module.exports = (env, argv) => {
             handle: (req, res, next) => {
               res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
               res.write('{"status": "ok", "notice": "Сообщение успешно отправлено."}');
+              res.end();
+              next();
+            },
+          },
+          {
+            route: '/data/types.json',
+            handle: (req, res, next) => {
+              res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+              res.write(Fs.readFileSync(Path.resolve(DIR_SRC, 'js', 'modules', 'CalendarCalc', 'types.json'), 'utf8'));
               res.end();
               next();
             },
